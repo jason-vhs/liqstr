@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="color-scheme" content="dark">
 <title>LIQUIDITY STRUCTURE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +24,12 @@
   --border:  rgba(255,255,255,0.06);
 }
 
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { 
+  scroll-behavior: smooth; 
+  overflow-x: hidden;  
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 
 body {
   background: var(--bg);
@@ -93,7 +99,6 @@ nav {
   padding: 80px 20px 52px;
   text-align: center; position: relative; overflow: hidden;
 }
-
 .hero-grid {
   position: absolute; inset: 0; pointer-events: none;
   background-image:
@@ -117,7 +122,6 @@ nav {
   55%       { opacity: 0.06; filter: hue-rotate(-30deg); }
   80%       { opacity: 0.04; filter: hue-rotate(25deg); }
 }
-
 .hero-title {
   font-family: 'Unbounded', sans-serif;
   font-weight: 800; font-stretch: expanded;
@@ -125,7 +129,6 @@ nav {
   width: 100%; display: block; white-space: nowrap; user-select: none;
   opacity: 0;
 }
-
 @keyframes titleReveal {
   from { opacity: 0; filter: blur(14px); transform: translateY(24px) scale(0.95);}
   to   { opacity: 1; filter: blur(0);    transform: translateY(0) scale(1.0); }
@@ -136,11 +139,13 @@ nav {
   color: var(--accent); margin-bottom: 20px;
   opacity: 0; animation: fadeUp 0.7s ease 0.35s both;
 }
+
 .hero-sub {
   font-size: 14px; font-weight: 300; line-height: 1.7; max-width: 310px; margin: 22px auto 0;
   font-style: italic;
   opacity: 0; animation: fadeUp 0.8s ease 0.65s both;
 }
+
 .hero-btns {
   display: flex; flex-direction: column; gap: 11px;
   width: 100%; max-width: 290px; margin: 32px auto 0;
@@ -177,6 +182,7 @@ nav {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 0;
 }
+
 .stat {
   background: transparent; padding: 28px 16px; text-align: center;
   position: relative; overflow: hidden;
@@ -205,24 +211,19 @@ nav {
   margin-top: 7px; letter-spacing: 0.1em; text-transform: uppercase;
 }
 
-.r,
-.mock-card.r,
-.irow.r,
-.rule.r {
+.r {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
               transform 0.7s cubic-bezier(0.22,1,0.36,1);
   will-change: opacity, transform;
 }
-
 .r.vis {
   opacity: 1;
   transform: translateY(0);
 }
 
 .section { padding: 64px 20px; }
-
 .section-header { text-align: center; margin-bottom: 36px; }
 
 .channel-pill {
@@ -264,7 +265,6 @@ nav {
 }
 .signal-card:hover { transform: scale(1.02); }
 .signal-card:active { transform: scale(0.98); }
-
 .signal-card.c-green::before { background: var(--accent); }
 .signal-card.c-green:hover, .signal-card.c-green:active {
   border-color: rgba(0,255,136,0.28);
@@ -286,6 +286,7 @@ nav {
 .card-text p { font-size: 13px; color: var(--gray); line-height: 1.55; }
 
 .level-badges { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 14px; }
+
 .lbcard {
   background: var(--surface); border: 0.5px solid var(--border);
   border-radius: 14px; padding: 16px 8px; text-align: center;
@@ -307,6 +308,7 @@ nav {
   border-color: rgba(46,144,250,0.35);
   box-shadow: 0 8px 28px rgba(46,144,250,0.1), inset 0 0 30px rgba(46,144,250,0.04);
 }
+
 .lbadge {
   display: inline-block; padding: 3px 9px; border-radius: 6px;
   font-size: 10px; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 8px;
@@ -323,14 +325,12 @@ nav {
   gap: 8px;
   margin-top: 14px;
 }
-
 .pivot-grid-two {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
   margin-top: 8px;
 }
-
 .pivot-card {
   background: var(--surface);
   border: 0.5px solid var(--border);
@@ -340,17 +340,14 @@ nav {
 
   transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
 }
-
 .pivot-card:hover { transform: scale(1.02); }
 .pivot-card:active { transform: scale(0.98); }
-
 .pivot-card.bull:hover {
   border-color: rgba(0,255,136,0.35);
   box-shadow:
     0 8px 28px rgba(0,255,136,0.1),
     inset 0 0 30px rgba(0,255,136,0.04);
 }
-
 .pivot-card.bear:hover {
   border-color: rgba(255,69,58,0.35);
   box-shadow:
@@ -380,13 +377,13 @@ nav {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   line-height: 1.55;
-  box-shadow: 0 2px 0 rgba(255,255,255,0.03),
-              0 20px 50px rgba(0,0,0,0.45);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25),     /* контакт */
+              0 18px 40px rgba(0,0,0,0.22);   /* воздух */
   transition: border-color 0.25s, box-shadow 0.25s;
   will-change: transform;
 }
-.mock-card:hover { transform: scale(1.02); border-color: rgba(0,255,136,0.2); box-shadow: 0 2px 0 rgba(255,255,255,0.03), 0 20px 50px rgba(0,255,136,0.05); }
-.mock-card:active { transform: scale(0.98); border-color: rgba(0,255,136,0.2); box-shadow: 0 2px 0 rgba(255,255,255,0.03), 0 20px 50px rgba(0,255,136,0.05); }
+.mock-card:hover { transform: scale(1.02); border-color: rgba(0,255,136,0.2); box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 18px 40px rgba(0,0,0,0.22), 0 18px 40px rgba(0,255,136,0.06); }
+.mock-card:active { transform: scale(0.98); border-color: rgba(0,255,136,0.2); box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 18px 40px rgba(0,0,0,0.22), 0 18px 40px rgba(0,255,136,0.06); }
 .mc-g { color: #00ff88; }
 .mc-r { color: #ff453a; }
 .mc-w { color: #fff; font-weight: 600; }
@@ -467,8 +464,8 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
     inset 0 1px 0 rgba(0,0,0,0.4);
   position: relative;
   overflow: hidden;
+  contain: layout paint;
 }
-
 .glass .dust {
   position: absolute;
   inset: 0;
@@ -477,7 +474,6 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
   z-index: 0;
   pointer-events: none;
 }
-
 .glass > *:not(.dust) {
   position: relative;
   z-index: 1;
@@ -558,7 +554,6 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
     <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— Weak (1)</span></div>
     <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— Medium (3)</span></div>
     <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div></div><span class="vlabel">— Strongest (5)</span></div>
-  </div>
   </div>
 </div>
 
@@ -662,7 +657,6 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
     <div class="irow r"><div class="iicon">🎲</div><div class="itext"><h4>Smart Leverage</h4><p>Calculated from stop-loss size. Capped to keep max loss at 10% of position size.</p></div></div>
     <div class="irow r"><div class="iicon">♎️</div><div class="itext"><h4>Market Sentiment</h4><p>Gainers vs Losers skew: 🟢 Bullish 🔴 Bearish ⚪️ Neutral</p></div></div>
   </div>
-  </div>
 </div>
 
 <section class="rules-section">
@@ -700,6 +694,7 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
   <canvas class="dust"></canvas>
   <p>⚠️ All signals are for informational purposes only and do not constitute financial advice. Nothing published should be considered a recommendation to buy or sell any asset. Always perform your own analysis. You are solely responsible for your trading decisions and outcomes.</p>
 </div>
+
 <footer>
   <span>© 2025 LIQUIDITY STRUCTURE</span>
   <a href="https://t.me/LiquidityStructureBot">Telegram →</a>
@@ -712,17 +707,20 @@ function fitTitle() {
   var lines = el.innerHTML.split('<br>');
   var avail = window.innerWidth - 40;
   el.style.fontSize = '120px';
+
   var tmp = document.createElement('span');
   tmp.style.cssText = 'font-family:Unbounded,sans-serif;font-weight:800;font-stretch:expanded;font-size:120px;letter-spacing:-0.02em;position:absolute;visibility:hidden;white-space:nowrap;top:-9999px;left:-9999px;';
-  tmp.textContent = lines.reduce(function(a, b) { return a.length > b.length ? a : b; }, '');
+  tmp.textContent = lines.reduce((a, b) => a.length > b.length ? a : b, '');
+
   document.body.appendChild(tmp);
   var ratio = avail / tmp.offsetWidth;
   document.body.removeChild(tmp);
+
   el.style.fontSize = Math.min(Math.max(Math.floor(120 * ratio), 28), 110) + 'px';
 }
+
 document.fonts.ready.then(() => {
   const el = document.getElementById('heroTitle');
-
   fitTitle();
 
   el.style.animation =
@@ -730,19 +728,25 @@ document.fonts.ready.then(() => {
     'gradShift 5s ease infinite';
 });
 
-window.addEventListener('resize', fitTitle);
+const resizeHandlers = [];
+let resizeTimer;
 
-var io = new IntersectionObserver((entries) => {
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    fitTitle();
+    resizeHandlers.forEach(fn => fn());
+  }, 120);
+});
+
+const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('vis');
       io.unobserve(entry.target);
     }
   });
-}, {
-  threshold: 0.15,
-  rootMargin: '0px 0px -40px 0px'
-});
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.r').forEach(el => io.observe(el));
 
@@ -752,139 +756,149 @@ document.querySelectorAll('.rg').forEach(group => {
   });
 });
 
+let globalScrollDY = 0;
+let lastScrollY = window.scrollY;
+
+window.addEventListener('scroll', () => {
+  const delta = window.scrollY - lastScrollY;
+  lastScrollY = window.scrollY;
+  globalScrollDY = delta;
+}, { passive: true });
+
 document.querySelectorAll('.glass').forEach(container => {
   const canvas = container.querySelector('.dust');
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
 
-  let w, h;
+  const ctx = canvas.getContext('2d');
   const dpr = window.devicePixelRatio || 1;
 
-  function resize() {
-    w = canvas.width = container.offsetWidth * dpr;
-    h = canvas.height = container.offsetHeight * dpr;
+  let cW = 0, cH = 0;
 
-    canvas.style.width = container.offsetWidth + 'px';
-    canvas.style.height = container.offsetHeight + 'px';
+  function resize() {
+    cW = container.offsetWidth;
+    cH = container.offsetHeight;
+
+    canvas.width  = cW * dpr;
+    canvas.height = cH * dpr;
+
+    canvas.style.width  = cW + 'px';
+    canvas.style.height = cH + 'px';
 
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
   resize();
-  window.addEventListener('resize', resize);
+  resizeHandlers.push(resize);
+
+  const isRed = container.classList.contains('dust-red');
 
   const COUNT = 80;
   const particles = [];
 
-  function createDistributed() {
-    const cols = Math.sqrt(COUNT);
-    const rows = Math.ceil(COUNT / cols);
+  const cols = Math.sqrt(COUNT);
+  const rows = Math.ceil(COUNT / cols);
+  const cellW = cW / cols;
+  const cellH = cH / rows;
 
-    const cellW = container.offsetWidth / cols;
-    const cellH = container.offsetHeight / rows;
+  let i = 0;
 
-    let i = 0;
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (i >= COUNT) break;
 
-    for (let y = 0; y < rows; y++) {
-      for (let x = 0; x < cols; x++) {
-        if (i >= COUNT) break;
+      particles.push({
+        x: x * cellW + Math.random() * cellW,
+        y: y * cellH + Math.random() * cellH,
+        r: Math.random() < 0.25 ? Math.random() * 2 + 1 : Math.random() * 1 + 0.3,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        a: Math.random() * 0.25 + 0.05,
+        noise: Math.random() * 1000,
+        bright: Math.random() < 0.2,
+        accent: Math.random() < 0.1,
+        color: null
+      });
 
-        particles.push({
-          x: x * cellW + Math.random() * cellW,
-          y: y * cellH + Math.random() * cellH,
-
-          r: Math.random() < 0.25
-            ? Math.random() * 2 + 1
-            : Math.random() * 1 + 0.3,
-
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-
-          a: Math.random() * 0.25 + 0.05,
-          noise: Math.random() * 1000,
-
-          bright: Math.random() < 0.2,
-          accent: Math.random() < 0.1
-        });
-
-        i++;
-      }
+      i++;
     }
   }
 
-  createDistributed();
+  let visible = true;
 
-  let scrollForce = 0;
-  let lastScroll = window.scrollY;
-
-  window.addEventListener('scroll', () => {
-    const delta = window.scrollY - lastScroll;
-    lastScroll = window.scrollY;
-
-    scrollForce = -delta * 0.6;
+  const visObs = new IntersectionObserver(entries => {
+    visible = entries[0].isIntersecting;
   });
 
+  visObs.observe(container);
+
+  let scrollForce = 0;
+  let frame = 0;
+
   function loop(t = 0) {
-    ctx.clearRect(0, 0, w, h);
+    requestAnimationFrame(loop);
+    if (!visible) return;
 
-    scrollForce *= 0.92;
+    frame++;
 
-    particles.forEach(p => {
+    ctx.clearRect(0, 0, cW, cH);
 
-      const nx = Math.sin(t * 0.002 + p.noise) * 0.6;
-      const ny = Math.cos(t * 0.002 + p.noise) * 0.6;
+    scrollForce += -globalScrollDY * 0.05;
+    globalScrollDY = 0;
+    scrollForce *= 0.90;
 
-      p.x += p.vx + nx;
-      p.y += p.vy + ny + scrollForce;
+    const phase = t * 0.002;
 
-      p.vx += (Math.random() - 0.5) * 0.01;
-      p.vy += (Math.random() - 0.5) * 0.01;
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      p.x += p.vx + Math.sin(phase + p.noise) * 0.6;
+      p.y += p.vy + Math.cos(phase + p.noise) * 0.6 + scrollForce;
+
+      if (frame % 3 === i % 3) {
+        p.vx += (Math.random() - 0.5) * 0.01;
+        p.vy += (Math.random() - 0.5) * 0.01;
+      }
 
       p.vx *= 0.99;
       p.vy *= 0.99;
 
-      if (p.x < 0) p.x += container.offsetWidth;
-      if (p.x > container.offsetWidth) p.x -= container.offsetWidth;
+      if (p.x < 0) p.x += cW;
+      else if (p.x > cW) p.x -= cW;
 
-      if (p.y < 0) p.y += container.offsetHeight;
-      if (p.y > container.offsetHeight) p.y -= container.offsetHeight;
+      if (p.y < 0) p.y += cH;
+      else if (p.y > cH) p.y -= cH;
 
-      const isRed = container.classList.contains('dust-red');
+      if (!p.color) {
+        let r = 255, g, b;
 
-      let r, g, b;
+        if (isRed) {
+          g = 69 + Math.random() * 20;
+          b = 58 + Math.random() * 20;
+        } else {
+          g = 200 + Math.random() * 40;
+          b = 70 + Math.random() * 40;
+        }
 
-      if (isRed) {
-        r = 255;
-        g = 69 + Math.random() * 20;
-        b = 58 + Math.random() * 20;
-      } else {
-        r = 255;
-        g = 200 + Math.random() * 40;
-        b = 70 + Math.random() * 40;
+        let alpha = p.bright ? p.a * 3 : p.a * 1.5;
+
+        if (p.accent && !isRed) {
+          g = 160;
+          b = 50;
+          alpha = p.a * 2.6;
+        }
+
+        p.color = `rgba(${r},${g},${b},${alpha})`;
       }
 
-      let alpha = p.bright
-        ? p.a * 3
-        : p.a * 1.5;
-
-      if (p.accent && !isRed) {
-        g = 160;
-        b = 50;
-        alpha = p.a * 2.6;
-      }
-
-      ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+      ctx.fillStyle = p.color;
       ctx.fillRect(p.x, p.y, p.r, p.r);
-    });
-
-    requestAnimationFrame(loop);
+    }
   }
 
   loop();
 });
 
 document.body.addEventListener('touchstart', function(){}, { passive: true });
-
 </script>
 </body>
 </html>
