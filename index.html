@@ -379,7 +379,7 @@ nav {
   line-height: 1.55;
   box-shadow: 0 2px 4px rgba(0,0,0,0.25),     /* контакт */
               0 18px 40px rgba(0,0,0,0.22);   /* воздух */
-  transition: border-color 0.25s, box-shadow 0.25s;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
   will-change: transform;
 }
 .mock-card:hover { transform: scale(1.02); border-color: rgba(0,255,136,0.2); box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 18px 40px rgba(0,0,0,0.22), 0 18px 40px rgba(0,255,136,0.06); }
@@ -743,6 +743,7 @@ const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('vis');
+      entry.target.style.transitionDelay = '0s';
       io.unobserve(entry.target);
     }
   });
