@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>LIQUIDITY STRUCTURE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&family=Inter:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #0e1118;
+  --surface: #161c27;
+  --white:   #eef0f4;
+  --gray:    #6b7a8d;
+  --accent:  #00ff88;
+  --red:     #ff453a;
+  --blue:    #2e90fa;
+  --gold:    #ffd60a;
+  --border:  rgba(255,255,255,0.06);
+}
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Inter', -apple-system, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Gradient text ── */
+@keyframes gradShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.g-green {
+  background: linear-gradient(270deg, #00ff88, #00d4ff, #00ff88, #00d4ff);
+  background-size: 300% 300%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: gradShift 5s ease infinite;
+}
+.g-blue {
+  background: linear-gradient(270deg, #2e90fa, #06d6f5, #2e90fa, #7ab8ff);
+  background-size: 300% 300%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: gradShift 5s ease infinite;
+}
+.g-gold {
+  background: linear-gradient(270deg, #ffd60a, #ff9f0a, #ffd60a, #ffe566);
+  background-size: 300% 300%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: gradShift 5s ease infinite;
+}
+.g-white {
+  background: linear-gradient(270deg, #d0d8e8, #8fa8c8, #d0d8e8, #a8c0d8);
+  background-size: 300% 300%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: gradShift 5s ease infinite;
+}
+
+/* ── Nav ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px; height: 48px;
+  background: rgba(14,17,24,0.85);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 0.5px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800; font-size: 9.5px; letter-spacing: 0.05em;
+  color: var(--white);
+}
+.nav-tg {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 500; color: var(--accent);
+  text-decoration: none; padding: 7px 14px;
+  border: 0.5px solid rgba(0,255,136,0.25); border-radius: 20px;
+  transition: background 0.2s, border-color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-tg:hover, .nav-tg:active { background: rgba(0,255,136,0.08); border-color: rgba(0,255,136,0.5); }
+
+/* ── Hero ── */
+.hero {
+  min-height: 80svh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 80px 20px 52px;
+  text-align: center; position: relative; overflow: hidden;
+}
+
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: radial-gradient(ellipse 88% 65% at 50% 42%, black 10%, transparent 74%);
+}
+.hero-grid::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,180,0,1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,180,0,1) 1px, transparent 1px);
+  background-size: 38px 38px;
+  animation: gridGlow 8s ease-in-out infinite;
+}
+@keyframes gridGlow {
+  0%, 100% { opacity: 0; }
+  30%       { opacity: 0.08; filter: hue-rotate(0deg); }
+  55%       { opacity: 0.06; filter: hue-rotate(-30deg); }
+  80%       { opacity: 0.04; filter: hue-rotate(25deg); }
+}
+
+.hero-title {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800; font-stretch: expanded;
+  font-size: 52px; line-height: 0.95; letter-spacing: -0.02em;
+  width: 100%; display: block; white-space: nowrap; user-select: none;
+  animation: titleReveal 1.1s cubic-bezier(0.16,1,0.3,1) 0.05s both;
+  animation: gradShift 5s ease infinite;
+}
+@keyframes titleReveal {
+  from { opacity: 0; filter: blur(12px); transform: translateY(20px); }
+  to   { opacity: 1; filter: blur(0);    transform: translateY(0); }
+}
+
+.eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 20px;
+  opacity: 0; animation: fadeUp 0.7s ease 0.35s both;
+}
+.hero-sub {
+  font-size: 14px; font-weight: 300; line-height: 1.7; max-width: 310px; margin: 22px auto 0;
+  font-style: italic;
+  opacity: 0; animation: fadeUp 0.8s ease 0.65s both;
+}
+.hero-btns {
+  display: flex; flex-direction: column; gap: 11px;
+  width: 100%; max-width: 290px; margin: 32px auto 0;
+  opacity: 0; animation: fadeUp 0.8s ease 0.9s both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.btn-main {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--accent); color: #000; font-size: 15px; font-weight: 600;
+  padding: 15px; border-radius: 14px; text-decoration: none; letter-spacing: -0.01em;
+  transition: transform 0.18s, box-shadow 0.25s;
+  will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-main:hover { transform: scale(1.025); box-shadow: 0 0 40px rgba(0,255,136,0.28); }
+.btn-main:active { transform: scale(0.98); }
+
+.btn-outline {
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; color: var(--white); font-size: 15px; font-weight: 400;
+  padding: 15px; border-radius: 14px; text-decoration: none;
+  border: 0.5px solid rgba(255,255,255,0.12);
+  transition: border-color 0.2s, background 0.2s;
+  will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-outline:hover, .btn-outline:active { border-color: rgba(255,255,255,0.28); background: rgba(255,255,255,0.03); }
+
+/* ── Stats ── */
+.stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; background: transparent;
+  border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+}
+.stat {
+  background: transparent; padding: 28px 16px; text-align: center;
+  position: relative; overflow: hidden;
+  transition: background 0.25s;
+  -webkit-tap-highlight-color: transparent;
+  will-change: transform;
+  cursor: default;
+  border-right: 0.5px solid rgba(255,255,255,0.06);
+  border-bottom: 0.5px solid rgba(255,255,255,0.06);
+}
+.stat::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 60%, rgba(0,255,136,0.08), transparent 68%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.stat:hover::after, .stat:active::after { opacity: 1; }
+.stat-n {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  font-size: 30px; letter-spacing: -0.03em; line-height: 1;
+}
+.stat-l {
+  font-size: 9.5px; font-weight: 500; color: var(--gray);
+  margin-top: 7px; letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+/* ── Scroll reveal ── */
+.r,
+.mock-card.r,
+.irow.r,
+.rule.r {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
+              transform 0.7s cubic-bezier(0.22,1,0.36,1);
+  will-change: opacity, transform;
+}
+
+.r.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Section ── */
+.section { padding: 64px 20px; }
+
+.section-header { text-align: center; margin-bottom: 36px; }
+
+.channel-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,255,136,0.07); border: 0.5px solid rgba(0,255,136,0.18);
+  border-radius: 20px; padding: 6px 14px; margin-bottom: 20px;
+}
+.ch-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+  animation: dotBlink 1.8s ease-in-out infinite;
+}
+.ch-label { font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+@keyframes dotBlink { 0%,100%{opacity:.3;transform:scale(1)} 50%{opacity:1;transform:scale(1.4)} }
+
+.section-title {
+  font-family: 'Unbounded', sans-serif; font-weight: 700;
+  line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 14px;
+}
+.section-desc { font-size: 13.5px; font-weight: 300; color: var(--gray); line-height: 1.7; max-width: 280px; margin: 0 auto; }
+
+.tag { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; display: block; }
+.sh { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 12px; }
+.sb { font-size: 13.5px; font-weight: 300; color: var(--gray); line-height: 1.65; }
+
+/* ── Signal cards ── */
+.signal-cards { display: flex; flex-direction: column; gap: 10px; margin-top: 28px; }
+
+.signal-card {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: var(--surface); border: 0.5px solid var(--border);
+  border-radius: 18px; padding: 20px 16px;
+  position: relative; overflow: hidden;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+  will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+}
+.signal-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; border-radius: 3px 0 0 3px;
+}
+.signal-card:hover { transform: scale(1.02); }
+.signal-card:active { transform: scale(0.98); }
+
+.signal-card.c-green::before { background: var(--accent); }
+.signal-card.c-green:hover, .signal-card.c-green:active {
+  border-color: rgba(0,255,136,0.28);
+  box-shadow: 0 0 0 0 transparent, 0 8px 32px rgba(0,255,136,0.07), inset 0 0 40px rgba(0,255,136,0.025);
+}
+.signal-card.c-yellow::before { background: var(--gold); }
+.signal-card.c-yellow:hover, .signal-card.c-yellow:active {
+  border-color: rgba(255,214,10,0.28);
+  box-shadow: 0 8px 32px rgba(255,214,10,0.07), inset 0 0 40px rgba(255,214,10,0.02);
+}
+.signal-card.c-blue::before { background: var(--blue); }
+.signal-card.c-blue:hover, .signal-card.c-blue:active {
+  border-color: rgba(46,144,250,0.28);
+  box-shadow: 0 8px 32px rgba(46,144,250,0.07), inset 0 0 40px rgba(46,144,250,0.02);
+}
+
+.card-sym { font-size: 32px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+.card-text h3 { font-family: 'Unbounded', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 6px; }
+.card-text p { font-size: 13px; color: var(--gray); line-height: 1.55; }
+
+/* ── Level badges — color per type ── */
+.level-badges { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 14px; }
+.lbcard {
+  background: var(--surface); border: 0.5px solid var(--border);
+  border-radius: 14px; padding: 16px 8px; text-align: center;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+  will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+}
+.lbcard:hover { transform: scale(1.02); }
+.lbcard:active { transform: scale(0.98); }
+.lbcard.hod:hover, .lbcard.hod:active {
+  border-color: rgba(0,255,136,0.35);
+  box-shadow: 0 8px 28px rgba(0,255,136,0.1), inset 0 0 30px rgba(0,255,136,0.04);
+}
+.lbcard.lod:hover, .lbcard.lod:active {
+  border-color: rgba(255,69,58,0.35);
+  box-shadow: 0 8px 28px rgba(255,69,58,0.1), inset 0 0 30px rgba(255,69,58,0.04);
+}
+.lbcard.brk:hover, .lbcard.brk:active {
+  border-color: rgba(46,144,250,0.35);
+  box-shadow: 0 8px 28px rgba(46,144,250,0.1), inset 0 0 30px rgba(46,144,250,0.04);
+}
+.lbadge {
+  display: inline-block; padding: 3px 9px; border-radius: 6px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 8px;
+}
+.lb-g { background: rgba(0,255,136,0.1);  color: var(--accent); }
+.lb-r { background: rgba(255,69,58,0.1);   color: var(--red); }
+.lb-b { background: rgba(46,144,250,0.1);  color: var(--blue); }
+.lbname { font-size: 11.5px; font-weight: 500; color: var(--white); }
+.lbdesc { font-size: 10px; color: var(--gray); margin-top: 3px; line-height: 1.4; }
+
+/* ── Pivot grid — color per type ── */
+.pivot-grid-one {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.pivot-grid-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.pivot-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 8px;
+  text-align: center;
+
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+}
+
+.pivot-card:hover { transform: scale(1.02); }
+.pivot-card:active { transform: scale(0.98); }
+
+.pivot-card.bull:hover {
+  border-color: rgba(0,255,136,0.35);
+  box-shadow:
+    0 8px 28px rgba(0,255,136,0.1),
+    inset 0 0 30px rgba(0,255,136,0.04);
+}
+
+.pivot-card.bear:hover {
+  border-color: rgba(255,69,58,0.35);
+  box-shadow:
+    0 8px 28px rgba(255,69,58,0.1),
+    inset 0 0 30px rgba(255,69,58,0.04);
+}
+
+/* ── Volume section ── */
+.vol-section {
+  background: var(--surface);
+  border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+  padding: 56px 20px;
+}
+.vol-list { margin-top: 28px; display: flex; flex-direction: column; gap: 16px; }
+.vrow { display: flex; align-items: center; gap: 14px; }
+.bars { display: flex; gap: 4px; }
+.bar { width: 15px; height: 22px; border-radius: 4px; background: rgba(255,255,255,0.05); }
+.bar.on { background: var(--accent); box-shadow: 0 0 8px rgba(0,255,136,0.35); }
+.vlabel { font-size: 13px; color: var(--gray); }
+
+/* ── Signal preview ── */
+.signal-section {
+  background: var(--surface);
+  border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+  padding: 56px 20px;
+}
+.mock-card {
+  margin-top: 32px;
+  background: #101620;
+  border: 0.5px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 20px 18px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  box-shadow: 0 2px 0 rgba(255,255,255,0.03),
+              0 20px 50px rgba(0,0,0,0.45);
+  transition: border-color 0.25s, box-shadow 0.25s;
+  will-change: transform;
+}
+.mock-card:hover { transform: scale(1.02); border-color: rgba(0,255,136,0.2); box-shadow: 0 2px 0 rgba(255,255,255,0.03), 0 20px 50px rgba(0,255,136,0.05); }
+.mock-card:active { transform: scale(0.98); border-color: rgba(0,255,136,0.2); box-shadow: 0 2px 0 rgba(255,255,255,0.03), 0 20px 50px rgba(0,255,136,0.05); }
+.mc-g { color: #00ff88; }
+.mc-r { color: #ff453a; }
+.mc-w { color: #fff; font-weight: 600; }
+
+.info-rows { margin-top: 30px; display: flex; flex-direction: column; gap: 12px; }
+.irow {
+  display: flex; gap: 13px; align-items: flex-start;
+  padding: 11px 12px; border-radius: 14px;
+  border: 0.5px solid transparent;
+  transition:
+    background 0.22s,
+    border-color 0.22s,
+    box-shadow 0.22s;
+  -webkit-tap-highlight-color: transparent;
+}
+.irow:hover, .irow:active {
+  background: rgba(0,255,136,0.04);
+  border-color: rgba(0,255,136,0.12);
+  box-shadow: inset 0 0 30px rgba(0,255,136,0.02);
+}
+.iicon {
+  width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; background: rgba(0,255,136,0.07);
+}
+.itext h4 { font-size: 13.5px; font-weight: 500; margin-bottom: 3px; }
+.itext p  { font-size: 12px; color: var(--gray); line-height: 1.55; }
+
+/* ── Rules ── */
+.rules-section { padding: 60px 20px; }
+.rules-list { margin-top: 28px; display: flex; flex-direction: column; gap: 4px; }
+.rule {
+  display: flex; gap: 16px; padding: 17px 12px;
+  border-radius: 12px;
+  border: 0.5px solid transparent;
+  border-bottom: 0.5px solid var(--border);
+  transition:
+    background 0.22s,
+    border-color 0.22s,
+    box-shadow 0.22s;
+  -webkit-tap-highlight-color: transparent;
+}
+.rule:last-child { border-bottom-color: transparent; }
+.rule:hover, .rule:active {
+  background: rgba(0,255,136,0.035);
+  border-color: rgba(0,255,136,0.1);
+  box-shadow: inset 0 0 40px rgba(0,255,136,0.018);
+}
+.rnum { font-family: 'Unbounded', sans-serif; font-size: 11px; font-weight: 700; color: var(--accent); min-width: 26px; padding-top: 2px; letter-spacing: 0.05em; display: flex; flex-direction: column; align-items: center; gap: 6px;}
+.rbody h4 { font-size: 14px; font-weight: 500; margin-bottom: 5px; }
+.rbody p  { font-size: 13px; color: var(--gray); line-height: 1.55; }
+.remoji { font-size: 13px; transform: translateY(-2px); }
+
+/* ── CTA ── */
+.cta { padding: 80px 20px 90px; text-align: center; position: relative; overflow: hidden; }
+.cta::before {
+  content: ''; position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%);
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(0,255,136,0.055) 0%, transparent 65%);
+  pointer-events: none;
+}
+.cta-h { font-family: 'Unbounded', sans-serif; font-weight: 800; font-size: 30px; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 14px; }
+.cta-p { font-size: 14px; font-weight: 300; color: var(--gray); line-height: 1.7; margin-bottom: 32px; font-style: italic; }
+.cta-btns { display: flex; flex-direction: column; gap: 10px; max-width: 290px; margin: 0 auto; }
+
+/* ── Footer ── */
+.disclaimer { padding: 22px 20px 36px; border-top: 0.5px solid var(--border); }
+.disclaimer p { font-size: 11px; color: rgba(255,255,255,0.14); line-height: 1.75; text-align: center; }
+footer { padding: 14px 20px; display: flex; justify-content: space-between; border-top: 0.5px solid var(--border); }
+footer span { font-size: 11px; color: rgba(255,255,255,0.18); }
+footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
+
+/* стекло */
+.stats,
+.vol-section,
+.signal-section {
+  background: rgba(20, 24, 32, 0.45);
+
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+
+  border-top: 0.5px solid rgba(255,255,255,0.08);
+  border-bottom: 0.5px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    inset 0 -1px 0 rgba(255,255,255,0.04),
+    inset 0 1px 0 rgba(0,0,0,0.4);
+}
+
+.glass {
+  position: relative;
+  overflow: hidden; /* КЛЮЧ — режет пыль по блоку */
+}
+
+/* canvas внутри стекла */
+.glass .dust {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* контент выше пыли */
+.glass > *:not(canvas) {
+  position: relative;
+  z-index: 1;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">LIQUIDITY STRUCTURE</div>
+  <a href="https://t.me/LiquidityStructureBot" class="nav-tg">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+    Open
+  </a>
+</nav>
+
+<div class="hero">
+  <div class="hero-grid"></div>
+  <p class="eyebrow">Telegram Trading Bot</p>
+  <h1 class="hero-title g-green" id="heroTitle">LIQUIDITY<br>STRUCTURE</h1>
+  <p class="hero-sub g-white">Highlights reactions at session liquidity levels and breakouts of counter-trend consolidation lines on 24h top gainers and losers.</p>
+  <div class="hero-btns">
+    <a href="https://t.me/LiquidityStructureBot" class="btn-main">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+      Subscribe in Telegram
+    </a>
+    <a href="#ch1" class="btn-outline">Explore Features ↓</a>
+  </div>
+</div>
+
+<div class="stats glass">
+  <canvas class="dust"></canvas>
+  <div class="stat"><div class="stat-n g-green">24/7</div><div class="stat-l">Market Scan</div></div>
+  <div class="stat"><div class="stat-n g-green" style="font-size:17px;line-height:1.2">Gainers<br>&amp; Losers</div><div class="stat-l">Live Watchlist</div></div>
+  <div class="stat"><div class="stat-n g-green">2</div><div class="stat-l">Private Channels</div></div>
+  <div class="stat"><div class="stat-n g-green">24h</div><div class="stat-l">Trial Access</div></div>
+</div>
+
+<section class="section" id="ch1">
+  <div class="section-header r">
+    <div class="channel-pill"><span class="ch-dot"></span><span class="ch-label">Channel 1</span></div>
+    <div class="section-title g-blue" style="font-size:clamp(20px,6.5vw,28px)">SESSION<br>LIQUIDITY LEVELS</div>
+    <p class="section-desc">Reject &amp; fakeout signals at HOD, LOD &amp; broken session levels — with volume-based power rating on every sweep.</p>
+  </div>
+
+  <div class="signal-cards rg">
+    <div class="signal-card c-green r">
+      <span class="card-sym">✋</span>
+      <div class="card-text">
+        <h3 style="color:var(--accent)">[R] Reject</h3>
+        <p>Clean level touch with immediate bounce. No liquidity taken beyond the level — pure price reaction.</p>
+      </div>
+    </div>
+    <div class="signal-card c-yellow r">
+      <span class="card-sym">💪</span>
+      <div class="card-text">
+        <h3 style="color:var(--gold)">[F] Fakeout — Volume-Powered</h3>
+        <p>Wick sweeps the level to grab liquidity, then snaps back. Rated from 1 to 5 based on the volume spike behind the move.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="level-badges r">
+    <div class="lbcard hod"><div class="lbadge lb-g">HOD</div><div class="lbname">High of Day</div><div class="lbdesc">Primary resistance</div></div>
+    <div class="lbcard lod"><div class="lbadge lb-r">LOD</div><div class="lbname">Low of Day</div><div class="lbdesc">Primary support</div></div>
+    <div class="lbcard brk"><div class="lbadge lb-b">BRK</div><div class="lbname">Broken</div><div class="lbdesc">Previous HOD/LOD</div></div>
+  </div>
+</section>
+
+<div class="vol-section rg glass">
+  <canvas class="dust"></canvas>
+  <span class="tag r">Fakeout Power</span>
+  <h2 class="sh g-white r">Liquidity sweep<br>rated 1 to 5.</h2>
+  <p class="sb r">Fakeouts are scored by volume spike intensity — from a subtle impulse to the most aggressive sweep.</p>
+  <div class="vol-list">
+    <div class="vrow r"><div class="bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— Reject, no spike</span></div>
+    <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— Weak (1)</span></div>
+    <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— Medium (3)</span></div>
+    <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div></div><span class="vlabel">— Strongest (5)</span></div>
+  </div>
+  </div>
+</div>
+
+<section class="section" id="ch2">
+  <div class="section-header r">
+    <div class="channel-pill"><span class="ch-dot"></span><span class="ch-label">Channel 2</span></div>
+    <div class="section-title g-gold" style="font-size:clamp(18px,6vw,26px)">COUNTER-TREND<br>CONSOLIDATION LINES</div>
+    <p class="section-desc">Breakout signals of counter-trend consolidation lines — Diamond, Star &amp; Reversal quality tiers.</p>
+  </div>
+
+  <div class="signal-cards rg">
+    <div class="signal-card c-green r">
+      <span class="card-sym">💠</span>
+      <div class="card-text">
+        <h3 style="color:var(--accent)">Diamond</h3>
+        <p>Highest quality. Strong trend and structure in full alignment. Clean, high-confidence setup.</p>
+      </div>
+    </div>
+    <div class="signal-card c-yellow r">
+      <span class="card-sym">⭐️</span>
+      <div class="card-text">
+        <h3 style="color:var(--gold)">Star</h3>
+        <p>Good quality. Trend and structure aligned. Reliable setup with solid probability.</p>
+      </div>
+    </div>
+    <div class="signal-card c-blue r">
+      <span class="card-sym">🔄</span>
+      <div class="card-text">
+        <h3 style="color:var(--blue)">Reversal</h3>
+        <p>Structurally valid, but against the 24h direction. Higher risk, higher reward potential.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pivot-grid-one r">
+    <div class="pivot-card bull">
+      <div class="lbadge lb-g">HH</div>
+      <div class="lbname">Higher High</div>
+      <div class="lbdesc">Top formed — uptrend ended</div>
+    </div>
+    <div class="pivot-card bull">
+      <div class="lbadge lb-g">LH</div>
+      <div class="lbname">Lower High</div>
+      <div class="lbdesc">Bullish momentum fading</div>
+    </div>
+  </div>
+  <div class="pivot-grid-two r">
+    <div class="pivot-card bear">
+      <div class="lbadge lb-r">LL</div>
+      <div class="lbname">Lower Low</div>
+      <div class="lbdesc">Bottom formed — downtrend ended</div>
+    </div>
+    <div class="pivot-card bear">
+      <div class="lbadge lb-r">HL</div>
+      <div class="lbname">Higher Low</div>
+      <div class="lbdesc">Bearish momentum fading</div>
+    </div>
+  </div>
+
+</section>
+
+<div class="signal-section glass">
+  <canvas class="dust"></canvas>
+  <span class="tag r">Signal Anatomy</span>
+  <h2 class="sh g-white r">Everything you<br>need. One alert.</h2>
+
+  <div class="mock-card r">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+      <span style="font-size:18px;">📍</span>
+      <span class="mc-w" style="font-size:16px;">ETHUSDT</span>
+      <span style="font-size:16px;">💯</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:14px;">
+      <span style="font-size:18px;">📈</span>
+      <span class="mc-w" style="font-size:17px;font-weight:700;">BUY · F ·</span>
+      <span style="font-size:18px;">💪</span>
+      <span style="display:inline-flex;gap:3px;">
+        <span style="display:inline-block;width:10px;height:15px;border-radius:3px;background:#00ff88;box-shadow:0 0 6px rgba(0,255,136,0.5)"></span>
+        <span style="display:inline-block;width:10px;height:15px;border-radius:3px;background:#00ff88;box-shadow:0 0 6px rgba(0,255,136,0.5)"></span>
+        <span style="display:inline-block;width:10px;height:15px;border-radius:3px;background:#00ff88;box-shadow:0 0 6px rgba(0,255,136,0.5)"></span>
+        <span style="display:inline-block;width:10px;height:15px;border-radius:3px;background:#00ff88;box-shadow:0 0 6px rgba(0,255,136,0.5)"></span>
+        <span style="display:inline-block;width:10px;height:15px;border-radius:3px;background:rgba(255,255,255,0.07)"></span>
+      </span>
+      <span class="mc-w" style="font-size:15px;">· 3m</span>
+    </div>
+    <div style="border-left:2.5px solid var(--accent);padding-left:14px;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">🛡️</span><span style="font-size:13.5px;">SL <span class="mc-r">-0.49%</span> · <span class="mc-w">2119.18</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">🎲</span><span style="font-size:13.5px;">Lev <span class="mc-w">x20</span> · max loss <span class="mc-w">9.83%</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">ℹ️</span><span style="font-size:13.5px;color:var(--gray);">24h <span class="mc-g">+0.64%</span> · Vol 3.2B</span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">📅</span><span style="font-size:13.5px;color:var(--gray);">Mar 24, 19:42</span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">♎️</span><span style="font-size:13.5px;font-weight:700;">Sentiment: 11 ↑ · 16 ↓ 🔴</span></div>
+    </div>
+  </div>
+
+  <div class="info-rows rg">
+    <div class="irow r"><div class="iicon">🧬</div><div class="itext"><h4>Trend on chart</h4><p>The green line indicates an uptrend, the red line a downtrend. Always know the macro direction before entering.</p></div></div>
+    <div class="irow r"><div class="iicon">💯</div><div class="itext"><h4>Emoji Top-100</h4><p>The asset is among the top 100 by market capitalization.</p></div></div>
+    <div class="irow r"><div class="iicon">💪</div><div class="itext"><h4>Fakeout power</h4><p>Fakeouts are scored by volume spike intensity.</p></div></div>
+    <div class="irow r"><div class="iicon">📐</div><div class="itext"><h4>Angle degrees</h4><p>Slope of the counter-trend line in degrees.</p></div></div>
+    <div class="irow r"><div class="iicon">🛡️</div><div class="itext"><h4>Stop-Loss</h4><p>Price and percentage included in every signal. Use it every single time — no exceptions.</p></div></div>
+    <div class="irow r"><div class="iicon">🎲</div><div class="itext"><h4>Smart Leverage</h4><p>Calculated from stop-loss size. Capped to keep max loss at 10% of position size.</p></div></div>
+    <div class="irow r"><div class="iicon">♎️</div><div class="itext"><h4>Market Sentiment</h4><p>Live gainers vs losers skew: 🟢 Bullish 🔴 Bearish ⚪️ Neutral</p></div></div>
+  </div>
+  </div>
+</div>
+
+<section class="rules-section">
+  <span class="tag r">Risk Rules</span>
+  <h2 class="sh g-white r">Three rules.<br>No exceptions.</h2>
+  <div class="rules-list rg">
+    <div class="rule r">
+      <div class="rnum">01<span class="remoji">🛡️</span></div>
+      <div class="rbody"><h4>Use Stop-Loss</h4><p>Every signal comes with a calculated stop. Use it every single time.</p></div>
+    </div>
+    <div class="rule r">
+      <div class="rnum">02<span class="remoji">⚖️</span></div>
+      <div class="rbody"><h4>Target RR 1:1 → 1:2 max</h4><p>Take profit at 1:1, scale out at 1:2. Or exit at first impulse / nearest resistance.</p></div>
+    </div>
+    <div class="rule r">
+      <div class="rnum">03<span class="remoji">⛔️</span></div>
+      <div class="rbody"><h4>No greed</h4><p>The market always gives another setup. Capital preservation is the only long-term edge.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <h2 class="cta-h g-green r">We highlight.<br>You make the call.</h2>
+  <p class="cta-p r">Pure technical analysis.<br>Built by traders, for traders.</p>
+  <div class="cta-btns r">
+    <a href="https://t.me/LiquidityStructureBot" class="btn-main">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+      Open Telegram Bot
+    </a>
+    <a href="https://ru.tradingview.com/v/vKTEkTK4/" class="btn-outline">📈 TradingView Indicator</a>
+  </div>
+</div>
+
+<div class="disclaimer">
+  <p>⚠️ All signals are for informational purposes only and do not constitute financial advice. Nothing published should be considered a recommendation to buy or sell any asset. Always perform your own analysis. You are solely responsible for your trading decisions and outcomes.</p>
+</div>
+<footer>
+  <span>© 2025 LIQUIDITY STRUCTURE</span>
+  <a href="https://t.me/LiquidityStructureBot">Telegram →</a>
+</footer>
+
+<script>
+// Hero title — fit to screen width
+function fitTitle() {
+  var el = document.getElementById('heroTitle');
+  if (!el) return;
+  var lines = el.innerHTML.split('<br>');
+  var avail = window.innerWidth - 40;
+  el.style.fontSize = '120px';
+  var tmp = document.createElement('span');
+  tmp.style.cssText = 'font-family:Unbounded,sans-serif;font-weight:800;font-stretch:expanded;font-size:120px;letter-spacing:-0.02em;position:absolute;visibility:hidden;white-space:nowrap;top:-9999px;left:-9999px;';
+  tmp.textContent = lines.reduce(function(a, b) { return a.length > b.length ? a : b; }, '');
+  document.body.appendChild(tmp);
+  var ratio = avail / tmp.offsetWidth;
+  document.body.removeChild(tmp);
+  el.style.fontSize = Math.min(Math.max(Math.floor(120 * ratio), 28), 110) + 'px';
+}
+document.fonts.ready.then(fitTitle);
+fitTitle();
+window.addEventListener('resize', fitTitle);
+
+// Scroll reveal
+var io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('vis');
+      io.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.15,
+  rootMargin: '0px 0px -40px 0px'
+});
+
+document.querySelectorAll('.r').forEach(el => io.observe(el));
+
+// Stagger
+document.querySelectorAll('.rg').forEach(group => {
+  group.querySelectorAll('.r').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.06) + 's';
+  });
+});
+
+// Dust (uniform spawn + strong scroll + no clustering EVER)
+document.querySelectorAll('.glass').forEach(container => {
+  const canvas = container.querySelector('.dust');
+  const ctx = canvas.getContext('2d');
+
+  let w, h;
+  const dpr = window.devicePixelRatio || 1;
+
+  function resize() {
+    w = canvas.width = container.offsetWidth * dpr;
+    h = canvas.height = container.offsetHeight * dpr;
+
+    canvas.style.width = container.offsetWidth + 'px';
+    canvas.style.height = container.offsetHeight + 'px';
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  const COUNT = 80;
+  const particles = [];
+
+  // ✅ GRID + JITTER (вместо random)
+  function createDistributed() {
+    const cols = Math.sqrt(COUNT);
+    const rows = Math.ceil(COUNT / cols);
+
+    const cellW = container.offsetWidth / cols;
+    const cellH = container.offsetHeight / rows;
+
+    let i = 0;
+
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        if (i >= COUNT) break;
+
+        particles.push({
+          x: x * cellW + Math.random() * cellW,
+          y: y * cellH + Math.random() * cellH,
+
+          r: Math.random() < 0.25
+            ? Math.random() * 2 + 1
+            : Math.random() * 1 + 0.3,
+
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+
+          a: Math.random() * 0.25 + 0.05,
+          noise: Math.random() * 1000,
+
+          bright: Math.random() < 0.2,
+          accent: Math.random() < 0.1
+        });
+
+        i++;
+      }
+    }
+  }
+
+  createDistributed();
+
+  let scrollForce = 0;
+  let lastScroll = window.scrollY;
+
+  window.addEventListener('scroll', () => {
+    const delta = window.scrollY - lastScroll;
+    lastScroll = window.scrollY;
+
+    // ✅ сильнее и “живее”
+    scrollForce = -delta * 0.6;
+  });
+
+  function loop(t = 0) {
+    ctx.clearRect(0, 0, w, h);
+
+    // плавное затухание
+    scrollForce *= 0.92;
+
+    particles.forEach(p => {
+
+      // независимый шум
+      const nx = Math.sin(t * 0.002 + p.noise) * 0.6;
+      const ny = Math.cos(t * 0.002 + p.noise) * 0.6;
+
+      // движение
+      p.x += p.vx + nx;
+      p.y += p.vy + ny + scrollForce;
+
+      // турбулентность
+      p.vx += (Math.random() - 0.5) * 0.01;
+      p.vy += (Math.random() - 0.5) * 0.01;
+
+      p.vx *= 0.99;
+      p.vy *= 0.99;
+
+      // wrap (но теперь БЕЗ линий, т.к. нет синхронности)
+      if (p.x < 0) p.x += container.offsetWidth;
+      if (p.x > container.offsetWidth) p.x -= container.offsetWidth;
+
+      if (p.y < 0) p.y += container.offsetHeight;
+      if (p.y > container.offsetHeight) p.y -= container.offsetHeight;
+
+      // GOLD
+      let r = 255;
+      let g = 200 + Math.random() * 40;
+      let b = 70 + Math.random() * 40;
+
+      let alpha = p.bright
+        ? p.a * 3
+        : p.a * 1.5;
+
+      if (p.accent) {
+        g = 160;
+        b = 50;
+        alpha = p.a * 2.6;
+      }
+
+      ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+      ctx.fillRect(p.x, p.y, p.r, p.r);
+    });
+
+    requestAnimationFrame(loop);
+  }
+
+  loop();
+});
+// iOS :active fix
+document.body.addEventListener('touchstart', function(){}, { passive: true });
+</script>
+</body>
+</html>
