@@ -211,7 +211,10 @@ nav {
   margin-top: 7px; letter-spacing: 0.1em; text-transform: uppercase;
 }
 
-.r {
+.r,
+.mock-card.r,
+.irow.r,
+.rule.r {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
@@ -743,7 +746,6 @@ const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('vis');
-      entry.target.style.transitionDelay = '0s';
       io.unobserve(entry.target);
     }
   });
