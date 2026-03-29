@@ -115,6 +115,7 @@ nav {
     linear-gradient(90deg, rgba(255,180,0,1) 1px, transparent 1px);
   background-size: 38px 38px;
   animation: gridGlow 8s ease-in-out infinite;
+  will-change: opacity, filter;
 }
 @keyframes gridGlow {
   0%, 100% { opacity: 0; }
@@ -173,7 +174,6 @@ nav {
   padding: 15px; border-radius: 14px; text-decoration: none;
   border: 0.5px solid rgba(255,255,255,0.12);
   transition: border-color 0.2s, background 0.2s;
-  will-change: transform;
   -webkit-tap-highlight-color: transparent;
 }
 .btn-outline:hover, .btn-outline:active { border-color: rgba(255,255,255,0.28); background: rgba(255,255,255,0.03); }
@@ -188,7 +188,6 @@ nav {
   position: relative; overflow: hidden;
   transition: background 0.25s;
   -webkit-tap-highlight-color: transparent;
-  will-change: transform;
   cursor: default;
   border-right: 0.5px solid rgba(255,255,255,0.06);
   border-bottom: 0.5px solid rgba(255,255,255,0.06);
@@ -553,10 +552,10 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
   <h2 class="sh g-white r">Liquidity sweep<br>rated 1 to 5.</h2>
   <p class="sb r">Fakeouts are scored by volume spike intensity — from a subtle impulse to the most aggressive sweep.</p>
   <div class="vol-list">
-    <div class="vrow r"><div class="bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— Reject, no sweep</span></div>
-    <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— Weak sweep</span></div>
-    <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— Medium sweep</span></div>
-    <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div></div><span class="vlabel">— Strong sweep</span></div>
+    <div class="vrow r"><div class="bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— [0] Reject, no sweep</span></div>
+    <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— [1] Weak sweep</span></div>
+    <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— [3] Medium sweep</span></div>
+    <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div></div><span class="vlabel">— [5] Strong sweep</span></div>
   </div>
 </div>
 
