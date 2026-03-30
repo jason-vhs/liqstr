@@ -24,9 +24,9 @@
   --border:  rgba(255,255,255,0.06);
 }
 
-html { 
-  scroll-behavior: smooth; 
-  overflow-x: hidden;  
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -77,6 +77,14 @@ nav {
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
   border-bottom: 0.5px solid var(--border);
+}
+nav::before {
+  content: '';
+  position: absolute; top: calc(-1 * env(safe-area-inset-top)); left: 0; right: 0; height: env(safe-area-inset-top);
+  background: inherit;
+  backdrop-filter: inherit;
+  -webkit-backdrop-filter: inherit;
+  pointer-events: none;
 }
 .nav-logo {
   font-family: 'Unbounded', sans-serif;
@@ -140,13 +148,11 @@ nav {
   color: var(--accent); margin-bottom: 20px;
   opacity: 0; animation: fadeUp 0.7s ease 0.35s both;
 }
-
 .hero-sub {
   font-size: 14px; font-weight: 300; line-height: 1.7; max-width: 310px; margin: 22px auto 0;
   font-style: italic;
   opacity: 0; animation: fadeUp 0.8s ease 0.65s both;
 }
-
 .hero-btns {
   display: flex; flex-direction: column; gap: 11px;
   width: 100%; max-width: 290px; margin: 32px auto 0;
@@ -339,27 +345,20 @@ nav {
   border-radius: 14px;
   padding: 16px 8px;
   text-align: center;
-
   transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
 }
 .pivot-card:hover { transform: scale(1.02); }
 .pivot-card:active { transform: scale(0.98); }
 .pivot-card.bull:hover {
   border-color: rgba(0,255,136,0.35);
-  box-shadow:
-    0 8px 28px rgba(0,255,136,0.1),
-    inset 0 0 30px rgba(0,255,136,0.04);
+  box-shadow: 0 8px 28px rgba(0,255,136,0.1), inset 0 0 30px rgba(0,255,136,0.04);
 }
 .pivot-card.bear:hover {
   border-color: rgba(255,69,58,0.35);
-  box-shadow:
-    0 8px 28px rgba(255,69,58,0.1),
-    inset 0 0 30px rgba(255,69,58,0.04);
+  box-shadow: 0 8px 28px rgba(255,69,58,0.1), inset 0 0 30px rgba(255,69,58,0.04);
 }
 
-.vol-section {
-  padding: 56px 20px;
-}
+.vol-section { padding: 56px 20px; }
 .vol-list { margin-top: 28px; display: flex; flex-direction: column; gap: 16px; }
 .vrow { display: flex; align-items: center; gap: 14px; }
 .bars { display: flex; gap: 4px; }
@@ -367,9 +366,7 @@ nav {
 .bar.on { background: var(--accent); box-shadow: 0 0 8px rgba(0,255,136,0.35); }
 .vlabel { font-size: 13px; color: var(--gray); }
 
-.signal-section {
-  padding: 56px 20px;
-}
+.signal-section { padding: 56px 20px; }
 .mock-card {
   margin-top: 32px;
   background: #101620;
@@ -379,12 +376,11 @@ nav {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   line-height: 1.55;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.25),     /* контакт */
-              0 18px 40px rgba(0,0,0,0.22);   /* воздух */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 18px 40px rgba(0,0,0,0.22);
   transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
   will-change: transform;
 }
-.mock-card:hover { transform: scale(1.02); border-color: rgba(0,255,136,0.2); box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 18px 40px rgba(0,0,0,0.22), 0 18px 40px rgba(0,255,136,0.06); }
+.mock-card:hover  { transform: scale(1.02); border-color: rgba(0,255,136,0.2); box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 18px 40px rgba(0,0,0,0.22), 0 18px 40px rgba(0,255,136,0.06); }
 .mock-card:active { transform: scale(0.98); border-color: rgba(0,255,136,0.2); box-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 18px 40px rgba(0,0,0,0.22), 0 18px 40px rgba(0,255,136,0.06); }
 .mc-g { color: #00ff88; }
 .mc-r { color: #ff453a; }
@@ -395,10 +391,7 @@ nav {
   display: flex; gap: 13px; align-items: flex-start;
   padding: 11px 12px; border-radius: 14px;
   border: 0.5px solid transparent;
-  transition:
-    background 0.22s,
-    border-color 0.22s,
-    box-shadow 0.22s;
+  transition: background 0.22s, border-color 0.22s, box-shadow 0.22s;
   -webkit-tap-highlight-color: transparent;
 }
 .irow:hover, .irow:active {
@@ -421,10 +414,7 @@ nav {
   border-radius: 12px;
   border: 0.5px solid transparent;
   border-bottom: 0.5px solid var(--border);
-  transition:
-    background 0.22s,
-    border-color 0.22s,
-    box-shadow 0.22s;
+  transition: background 0.22s, border-color 0.22s, box-shadow 0.22s;
   -webkit-tap-highlight-color: transparent;
 }
 .rule:last-child { border-bottom-color: transparent; }
@@ -433,7 +423,7 @@ nav {
   border-color: rgba(0,255,136,0.1);
   box-shadow: inset 0 0 40px rgba(0,255,136,0.018);
 }
-.rnum { font-family: 'Unbounded', sans-serif; font-size: 11px; font-weight: 700; color: var(--accent); min-width: 26px; padding-top: 2px; letter-spacing: 0.05em; display: flex; flex-direction: column; align-items: center; gap: 6px;}
+.rnum { font-family: 'Unbounded', sans-serif; font-size: 11px; font-weight: 700; color: var(--accent); min-width: 26px; padding-top: 2px; letter-spacing: 0.05em; display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .rbody h4 { font-size: 14px; font-weight: 500; margin-bottom: 5px; }
 .rbody p  { font-size: 13px; color: var(--gray); line-height: 1.55; }
 .remoji { font-size: 13px; transform: translateY(-2px); }
@@ -461,25 +451,17 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   border-top: 0.5px solid rgba(255,255,255,0.08);
   border-bottom: 0.5px solid rgba(255,255,255,0.08);
-  box-shadow:
-    inset 0 -1px 0 rgba(255,255,255,0.04),
-    inset 0 1px 0 rgba(0,0,0,0.4);
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.04), inset 0 1px 0 rgba(0,0,0,0.4);
   position: relative;
   overflow: hidden;
   contain: layout paint;
 }
 .glass .dust {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
 }
-.glass > *:not(.dust) {
-  position: relative;
-  z-index: 1;
-}
+.glass > *:not(.dust) { position: relative; z-index: 1; }
 
 </style>
 </head>
@@ -552,10 +534,10 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
   <h2 class="sh g-white r">Liquidity sweep<br>rated 1 to 5.</h2>
   <p class="sb r">Fakeouts are scored by volume spike intensity — from a subtle impulse to the most aggressive sweep.</p>
   <div class="vol-list">
-    <div class="vrow r"><div class="bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— [0] Reject, no sweep</span></div>
-    <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— [1] Weak sweep</span></div>
-    <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— [3] Medium sweep</span></div>
-    <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div></div><span class="vlabel">— [5] Strong sweep</span></div>
+    <div class="vrow r"><div class="bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— Reject, no sweep</span></div>
+    <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— Weak sweep</span></div>
+    <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar"></div><div class="bar"></div></div><span class="vlabel">— Medium sweep</span></div>
+    <div class="vrow r"><div class="bars"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div></div><span class="vlabel">— Strong sweep</span></div>
   </div>
 </div>
 
@@ -614,7 +596,6 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
       <div class="lbdesc">Bearish momentum fading</div>
     </div>
   </div>
-
 </section>
 
 <div class="signal-section glass">
@@ -709,22 +690,18 @@ function fitTitle() {
   var lines = el.innerHTML.split('<br>');
   var avail = window.innerWidth - 40;
   el.style.fontSize = '120px';
-
   var tmp = document.createElement('span');
   tmp.style.cssText = 'font-family:Unbounded,sans-serif;font-weight:800;font-stretch:expanded;font-size:120px;letter-spacing:-0.02em;position:absolute;visibility:hidden;white-space:nowrap;top:-9999px;left:-9999px;';
   tmp.textContent = lines.reduce((a, b) => a.length > b.length ? a : b, '');
-
   document.body.appendChild(tmp);
   var ratio = avail / tmp.offsetWidth;
   document.body.removeChild(tmp);
-
   el.style.fontSize = Math.min(Math.max(Math.floor(120 * ratio), 28), 110) + 'px';
 }
 
 document.fonts.ready.then(() => {
   const el = document.getElementById('heroTitle');
   fitTitle();
-
   el.style.animation =
     'titleReveal 1.2s cubic-bezier(0.16,1,0.3,1) both, ' +
     'gradShift 5s ease infinite';
@@ -732,7 +709,6 @@ document.fonts.ready.then(() => {
 
 const resizeHandlers = [];
 let resizeTimer;
-
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(() => {
@@ -760,12 +736,20 @@ document.querySelectorAll('.rg').forEach(group => {
 
 let globalScrollDY = 0;
 let lastScrollY = window.scrollY;
-
 window.addEventListener('scroll', () => {
-  const delta = window.scrollY - lastScrollY;
+  globalScrollDY += window.scrollY - lastScrollY;
   lastScrollY = window.scrollY;
-  globalScrollDY = delta;
 }, { passive: true });
+
+const dustLoops = [];
+
+function masterLoop(t) {
+  requestAnimationFrame(masterLoop);
+  const dy = globalScrollDY;
+  globalScrollDY = 0;
+  dustLoops.forEach(fn => fn(t, dy));
+}
+requestAnimationFrame(masterLoop);
 
 document.querySelectorAll('.glass').forEach(container => {
   const canvas = container.querySelector('.dust');
@@ -773,26 +757,21 @@ document.querySelectorAll('.glass').forEach(container => {
 
   const ctx = canvas.getContext('2d');
   const dpr = window.devicePixelRatio || 1;
+  const isRed = container.classList.contains('dust-red');
 
   let cW = 0, cH = 0;
 
   function resize() {
     cW = container.offsetWidth;
     cH = container.offsetHeight;
-
     canvas.width  = cW * dpr;
     canvas.height = cH * dpr;
-
     canvas.style.width  = cW + 'px';
     canvas.style.height = cH + 'px';
-
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
-
   resize();
   resizeHandlers.push(resize);
-
-  const isRed = container.classList.contains('dust-red');
 
   const COUNT = 80;
   const particles = [];
@@ -803,11 +782,9 @@ document.querySelectorAll('.glass').forEach(container => {
   const cellH = cH / rows;
 
   let i = 0;
-
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       if (i >= COUNT) break;
-
       particles.push({
         x: x * cellW + Math.random() * cellW,
         y: y * cellH + Math.random() * cellH,
@@ -820,33 +797,28 @@ document.querySelectorAll('.glass').forEach(container => {
         accent: Math.random() < 0.1,
         color: null
       });
-
       i++;
     }
   }
 
   let visible = true;
-
   const visObs = new IntersectionObserver(entries => {
     visible = entries[0].isIntersecting;
-  });
-
+  }, { threshold: 0 });
   visObs.observe(container);
 
   let scrollForce = 0;
   let frame = 0;
 
-  function loop(t = 0) {
-    requestAnimationFrame(loop);
+  dustLoops.push((t, dy) => {
     if (!visible) return;
 
     frame++;
 
-    ctx.clearRect(0, 0, cW, cH);
-
-    scrollForce += -globalScrollDY * 0.05;
-    globalScrollDY = 0;
+    scrollForce += -dy * 0.05;
     scrollForce *= 0.90;
+
+    ctx.clearRect(0, 0, cW, cH);
 
     const phase = t * 0.002;
 
@@ -864,40 +836,27 @@ document.querySelectorAll('.glass').forEach(container => {
       p.vx *= 0.99;
       p.vy *= 0.99;
 
-      if (p.x < 0) p.x += cW;
-      else if (p.x > cW) p.x -= cW;
-
-      if (p.y < 0) p.y += cH;
-      else if (p.y > cH) p.y -= cH;
+      if (p.x < 0) p.x += cW; else if (p.x > cW) p.x -= cW;
+      if (p.y < 0) p.y += cH; else if (p.y > cH) p.y -= cH;
 
       if (!p.color) {
         let r = 255, g, b;
-
         if (isRed) {
-          g = 69 + Math.random() * 20;
-          b = 58 + Math.random() * 20;
+          g = (69  + Math.random() * 20) | 0;
+          b = (58  + Math.random() * 20) | 0;
         } else {
-          g = 200 + Math.random() * 40;
-          b = 70 + Math.random() * 40;
+          g = (200 + Math.random() * 40) | 0;
+          b = (70  + Math.random() * 40) | 0;
         }
-
         let alpha = p.bright ? p.a * 3 : p.a * 1.5;
-
-        if (p.accent && !isRed) {
-          g = 160;
-          b = 50;
-          alpha = p.a * 2.6;
-        }
-
-        p.color = `rgba(${r},${g},${b},${alpha})`;
+        if (p.accent && !isRed) { g = 160; b = 50; alpha = p.a * 2.6; }
+        p.color = `rgba(${r},${g},${b},${alpha.toFixed(3)})`;
       }
 
       ctx.fillStyle = p.color;
       ctx.fillRect(p.x, p.y, p.r, p.r);
     }
-  }
-
-  loop();
+  });
 });
 
 document.body.addEventListener('touchstart', function(){}, { passive: true });
