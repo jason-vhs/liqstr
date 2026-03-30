@@ -70,9 +70,9 @@ body {
 }
 
 nav {
-  position: fixed; top: -40px; left: 0; right: 0; z-index: 100;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 40px 20px 0; height: calc(48px + 40px);
+  padding: 0 20px; height: 48px;
   background: rgba(14,17,24,0.5);
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
@@ -492,7 +492,7 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
 <section class="section" id="ch1">
   <div class="section-header r">
     <div class="channel-pill"><span class="ch-dot"></span><span class="ch-label">Channel 1</span></div>
-    <div class="section-title g-blue" style="font-size:clamp(20px,6.5vw,28px)">SESSION<br>LIQUIDITY LEVELS</div>
+    <div class="section-title g-blue" style="font-size:clamp(20px,6.5vw,28px)">KEY SESSION<br>LIQUIDITY LEVELS</div>
     <p class="section-desc">Reject &amp; fakeout signals at HOD, LOD &amp; broken session levels — with volume-based power rating on every sweep.</p>
   </div>
 
@@ -754,24 +754,39 @@ document.querySelectorAll('.glass').forEach(container => {
   let cW = 0, cH = 0;
 
   function resize() {
+    const oldW = cW;
+    const oldH = cH;
     cW = container.offsetWidth;
     cH = container.offsetHeight;
+    if (oldW && oldH) {
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x = (p.x / oldW) * cW;
+        p.y = (p.y / oldH) * cH;
+      }
+    }
     canvas.width  = cW * dpr;
     canvas.height = cH * dpr;
     canvas.style.width  = cW + 'px';
     canvas.style.height = cH + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    updateGrid();
   }
-  resize();
-  resizeHandlers.push(resize);
+  
+  let cols, rows, cellW, cellH;
+
+  function updateGrid() {
+    cols = Math.floor(Math.sqrt(COUNT));
+    rows = Math.ceil(COUNT / cols);
+    cellW = cW / cols;
+    cellH = cH / rows;
+  }
 
   const COUNT = 80;
   const particles = [];
 
-  const cols = Math.sqrt(COUNT);
-  const rows = Math.ceil(COUNT / cols);
-  const cellW = cW / cols;
-  const cellH = cH / rows;
+  resizeHandlers.push(resize);
+  resize();
 
   let i = 0;
   for (let y = 0; y < rows; y++) {
