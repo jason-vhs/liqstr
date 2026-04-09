@@ -15,12 +15,13 @@
 :root {
   --bg:      #0e1118;
   --surface: #161c27;
-  --white:   #eef0f4;
   --gray:    #6b7a8d;
-  --accent:  #00ff88;
-  --red:     #ff453a;
+  --green:   #00ff88;
+  --white:   #eef0f4;
   --blue:    #2e90fa;
-  --gold:    #ffd60a;
+  --yellow:  #ffd60a;
+  --red:     #ff453a;
+  --pink:    #ff6b9d;
   --border:  rgba(255,255,255,0.06);
 }
 
@@ -39,6 +40,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+#ch1, #ch2 { scroll-margin-top: 48px; }                                                                             
+#ch3 { scroll-margin-top: 80px; }
+
 @keyframes gradShift {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
@@ -50,20 +54,26 @@ body {
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: gradShift 5s ease infinite;
 }
+.g-white {
+  background: linear-gradient(270deg, #d0d8e8, #8fa8c8, #d0d8e8, #a8c0d8);
+  background-size: 300% 300%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: gradShift 5s ease infinite;
+}
 .g-blue {
   background: linear-gradient(270deg, #2e90fa, #06d6f5, #2e90fa, #7ab8ff);
   background-size: 300% 300%;
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: gradShift 5s ease infinite;
 }
-.g-gold {
+.g-yellow {
   background: linear-gradient(270deg, #ffd60a, #ff9f0a, #ffd60a, #ffe566);
   background-size: 300% 300%;
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: gradShift 5s ease infinite;
 }
-.g-white {
-  background: linear-gradient(270deg, #d0d8e8, #8fa8c8, #d0d8e8, #a8c0d8);
+.g-red {
+  background: linear-gradient(270deg, #ff453a, #ff7b73, #ff453a, #ff6b6b);
   background-size: 300% 300%;
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: gradShift 5s ease infinite;
@@ -85,7 +95,7 @@ nav {
 }
 .nav-tg {
   display: flex; align-items: center; gap: 6px;
-  font-size: 13px; font-weight: 500; color: var(--accent);
+  font-size: 13px; font-weight: 500; color: var(--green);
   text-decoration: none; padding: 7px 14px;
   border: 0.5px solid rgba(0,255,136,0.25); border-radius: 20px;
   transition: background 0.2s, border-color 0.2s;
@@ -137,7 +147,7 @@ nav {
 
 .eyebrow {
   font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 20px;
+  color: var(--green); margin-bottom: 20px;
   opacity: 0; animation: fadeUp 0.7s ease 0.35s both;
 }
 .hero-sub {
@@ -157,7 +167,7 @@ nav {
 
 .btn-main {
   display: flex; align-items: center; justify-content: center; gap: 8px;
-  background: var(--accent); color: #000; font-size: 15px; font-weight: 600;
+  background: var(--green); color: #000; font-size: 15px; font-weight: 600;
   padding: 15px; border-radius: 14px; text-decoration: none; letter-spacing: -0.01em;
   transition: transform 0.18s, box-shadow 0.25s;
   will-change: transform;
@@ -224,6 +234,8 @@ nav {
 }
 
 .section { padding: 64px 20px; }
+#ch2 { padding-bottom: 32px; }
+#ch3 { padding-top: 32px; }
 .section-header { text-align: center; margin-bottom: 36px; }
 
 .channel-pill {
@@ -232,19 +244,20 @@ nav {
   border-radius: 20px; padding: 6px 14px; margin-bottom: 20px;
 }
 .ch-dot {
-  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+  width: 6px; height: 6px; border-radius: 50%; background: var(--green);
   animation: dotBlink 1.8s ease-in-out infinite;
 }
-.ch-label { font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.ch-label { font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); }
 @keyframes dotBlink { 0%,100%{opacity:.3;transform:scale(1)} 50%{opacity:1;transform:scale(1.4)} }
 
 .section-title {
   font-family: 'Unbounded', sans-serif; font-weight: 700;
   line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 14px;
 }
+
 .section-desc { font-size: 13.5px; font-weight: 300; color: var(--gray); line-height: 1.7; max-width: 280px; margin: 0 auto; }
 
-.tag { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; display: block; }
+.tag { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green); margin-bottom: 12px; display: block; }
 .sh { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 12px; }
 .sb { font-size: 13.5px; font-weight: 300; color: var(--gray); line-height: 1.65; }
 
@@ -265,12 +278,12 @@ nav {
 }
 .signal-card:hover { transform: scale(1.02); }
 .signal-card:active { transform: scale(0.98); }
-.signal-card.c-green::before { background: var(--accent); }
+.signal-card.c-green::before { background: var(--green); }
 .signal-card.c-green:hover, .signal-card.c-green:active {
   border-color: rgba(0,255,136,0.28);
   box-shadow: 0 0 0 0 transparent, 0 8px 32px rgba(0,255,136,0.07), inset 0 0 40px rgba(0,255,136,0.025);
 }
-.signal-card.c-yellow::before { background: var(--gold); }
+.signal-card.c-yellow::before { background: var(--yellow); }
 .signal-card.c-yellow:hover, .signal-card.c-yellow:active {
   border-color: rgba(255,214,10,0.28);
   box-shadow: 0 8px 32px rgba(255,214,10,0.07), inset 0 0 40px rgba(255,214,10,0.02);
@@ -279,6 +292,16 @@ nav {
 .signal-card.c-blue:hover, .signal-card.c-blue:active {
   border-color: rgba(46,144,250,0.28);
   box-shadow: 0 8px 32px rgba(46,144,250,0.07), inset 0 0 40px rgba(46,144,250,0.02);
+}
+.signal-card.c-red::before { background: var(--red); }
+.signal-card.c-red:hover, .signal-card.c-red:active {
+  border-color: rgba(255,69,58,0.28);
+  box-shadow: 0 8px 32px rgba(255,69,58,0.07), inset 0 0 40px rgba(255,69,58,0.02);
+}
+.signal-card.c-pink::before { background: #ff6b9d; }
+.signal-card.c-pink:hover, .signal-card.c-pink:active {
+  border-color: rgba(255,107,157,0.28);
+  box-shadow: 0 8px 32px rgba(255,107,157,0.07), inset 0 0 40px rgba(255,107,157,0.02);
 }
 
 .card-sym { font-size: 32px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
@@ -313,7 +336,7 @@ nav {
   display: inline-block; padding: 3px 9px; border-radius: 6px;
   font-size: 10px; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 8px;
 }
-.lb-g { background: rgba(0,255,136,0.1);  color: var(--accent); }
+.lb-g { background: rgba(0,255,136,0.1);  color: var(--green); }
 .lb-r { background: rgba(255,69,58,0.1);   color: var(--red); }
 .lb-b { background: rgba(46,144,250,0.1);  color: var(--blue); }
 .lbname { font-size: 11.5px; font-weight: 500; color: var(--white); }
@@ -355,7 +378,7 @@ nav {
 .vrow { display: flex; align-items: center; gap: 14px; }
 .bars { display: flex; gap: 4px; }
 .bar { width: 15px; height: 22px; border-radius: 4px; background: rgba(255,255,255,0.05); }
-.bar.on { background: var(--accent); box-shadow: 0 0 8px rgba(0,255,136,0.35); }
+.bar.on { background: var(--green); box-shadow: 0 0 8px rgba(0,255,136,0.35); }
 .vlabel { font-size: 13px; color: var(--gray); }
 
 .signal-section { padding: 56px 20px; }
@@ -415,7 +438,7 @@ nav {
   border-color: rgba(0,255,136,0.1);
   box-shadow: inset 0 0 40px rgba(0,255,136,0.018);
 }
-.rnum { font-family: 'Unbounded', sans-serif; font-size: 11px; font-weight: 700; color: var(--accent); min-width: 26px; padding-top: 2px; letter-spacing: 0.05em; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.rnum { font-family: 'Unbounded', sans-serif; font-size: 11px; font-weight: 700; color: var(--green); min-width: 26px; padding-top: 2px; letter-spacing: 0.05em; display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .rbody h4 { font-size: 14px; font-weight: 500; margin-bottom: 5px; }
 .rbody p  { font-size: 13px; color: var(--gray); line-height: 1.55; }
 .remoji { font-size: 13px; transform: translateY(-2px); }
@@ -435,7 +458,7 @@ nav {
 .disclaimer p { font-size: 11px; color: var(--gray); line-height: 1.75; text-align: center; }
 footer { padding: 14px 20px; display: flex; justify-content: space-between; border-top: 0.5px solid var(--border); }
 footer span { font-size: 11px; color: rgba(255,255,255,0.18); }
-footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
+footer a    { font-size: 11px; color: var(--green); text-decoration: none; }
 
 .glass {
   background: rgba(20, 24, 32, 0.45);
@@ -485,7 +508,7 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
   <canvas class="dust"></canvas>
   <div class="stat"><div class="stat-n g-green">24/7</div><div class="stat-l">Market Scan</div></div>
   <div class="stat"><div class="stat-n g-green" style="font-size:17px;line-height:1.2">Gainers<br>&amp; Losers</div><div class="stat-l">Live Watchlist</div></div>
-  <div class="stat"><div class="stat-n g-green">2</div><div class="stat-l">Private Channels</div></div>
+  <div class="stat"><div class="stat-n g-green">3</div><div class="stat-l">Private Channels</div></div>
   <div class="stat"><div class="stat-n g-green">24h</div><div class="stat-l">Trial Access</div></div>
 </div>
 
@@ -497,17 +520,17 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
   </div>
 
   <div class="signal-cards rg">
-    <div class="signal-card c-green r">
+    <div class="signal-card c-yellow r">
       <span class="card-sym">✋</span>
       <div class="card-text">
-        <h3 style="color:var(--accent)">[R] Reject</h3>
+        <h3 style="color:var(--yellow)">Reject</h3>
         <p>Clean level touch with immediate bounce. No liquidity taken beyond the level — pure price reaction.</p>
       </div>
     </div>
-    <div class="signal-card c-yellow r">
-      <span class="card-sym">💪</span>
+    <div class="signal-card c-green r">
+      <span class="card-sym">☝️</span>
       <div class="card-text">
-        <h3 style="color:var(--gold)">[F] Fakeout — Volume-Powered</h3>
+        <h3 style="color:var(--green)">Fakeout — Volume-Powered</h3>
         <p>Wick sweeps the level to grab liquidity, then snaps back. Rated from 1 to 5 based on the volume spike behind the move.</p>
       </div>
     </div>
@@ -536,30 +559,23 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
 <section class="section" id="ch2">
   <div class="section-header r">
     <div class="channel-pill"><span class="ch-dot"></span><span class="ch-label">Channel 2</span></div>
-    <div class="section-title g-gold" style="font-size:clamp(18px,6vw,26px)">COUNTER-TREND<br>CONSOLIDATION LINES</div>
-    <p class="section-desc">Breakout signals of counter-trend consolidation lines — Diamond, Star &amp; Reversal quality tiers.</p>
+    <div class="section-title g-yellow" style="font-size:clamp(20px,6.5vw,28px)">COUNTER-TREND<br>CONSOLIDATION LINES</div>
+    <p class="section-desc">Breakout signals of counter-trend consolidation lines — Star  &amp; Diamond quality tiers.</p>
   </div>
 
   <div class="signal-cards rg">
-    <div class="signal-card c-green r">
-      <span class="card-sym">💠</span>
-      <div class="card-text">
-        <h3 style="color:var(--accent)">Diamond</h3>
-        <p>Highest quality. Strong trend and structure in full alignment. Clean, high-confidence setup.</p>
-      </div>
-    </div>
     <div class="signal-card c-yellow r">
       <span class="card-sym">⭐️</span>
       <div class="card-text">
-        <h3 style="color:var(--gold)">Star</h3>
+        <h3 style="color:var(--yellow)">Star</h3>
         <p>Good quality. Trend and structure aligned. Reliable setup with solid probability.</p>
       </div>
     </div>
     <div class="signal-card c-blue r">
-      <span class="card-sym">🔄</span>
+      <span class="card-sym">💠</span>
       <div class="card-text">
-        <h3 style="color:var(--blue)">Reversal</h3>
-        <p>Structurally valid, but against the 24h direction. Higher risk, higher reward potential.</p>
+        <h3 style="color:var(--blue)">Diamond</h3>
+        <p>Highest quality. Strong trend and structure in full alignment. Clean, high-confidence setup.</p>
       </div>
     </div>
   </div>
@@ -590,6 +606,32 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
   </div>
 </section>
 
+<section class="section" id="ch3">
+  <div class="section-header r">
+    <div class="channel-pill"><span class="ch-dot"></span><span class="ch-label">Channel 3</span></div>
+    <div class="section-title g-red" style="font-size:clamp(20px,6.5vw,28px)">SWEEP REVERSAL<br>
+    <span class="g-yellow" style="font-size:clamp(14px,4vw,18px)">COMING SOON</span></div>
+    <p class="section-desc">Bounce &amp; reversal signals after liquidity sweeps — from the first reaction to the confirmed flip after a double sweep.</p>
+  </div>
+
+  <div class="signal-cards rg">
+    <div class="signal-card c-red r">
+      <span class="card-sym">🏓</span>
+      <div class="card-text">
+        <h3 style="color:var(--red)">Bounce</h3>
+        <p>Price drives into liquidity, momentum fades, and price bounces. This is the first sign that the move may be turning.</p>
+      </div>
+    </div>
+    <div class="signal-card c-yellow r">
+      <span class="card-sym">💫</span>
+      <div class="card-text">
+        <h3 style="color:var(--yellow)">Reversal</h3>
+        <p>Price makes a second sweep, fades again, and then flips direction after the trap is set. This is the stronger reversal signal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="signal-section glass">
   <canvas class="dust"></canvas>
   <span class="tag r">Signal Anatomy</span>
@@ -597,7 +639,7 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
 
   <div class="mock-card r">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-      <span style="font-size:18px;">📍</span>
+      <span style="font-size:18px;">☝️</span>
       <span class="mc-w" style="font-size:16px;">ETHUSDT</span>
       <span style="font-size:16px;">💯</span>
     </div>
@@ -614,7 +656,7 @@ footer a    { font-size: 11px; color: var(--accent); text-decoration: none; }
       </span>
       <span class="mc-w" style="font-size:15px;">· 3m</span>
     </div>
-    <div style="border-left:2.5px solid var(--accent);padding-left:14px;display:flex;flex-direction:column;gap:8px;">
+    <div style="border-left:2.5px solid var(--green);padding-left:14px;display:flex;flex-direction:column;gap:8px;">
       <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">🛡️</span><span style="font-size:13.5px;">SL <span class="mc-r">-0.49%</span> · <span class="mc-w">2119.18</span></span></div>
       <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">🎲</span><span style="font-size:13.5px;">Lev <span class="mc-w">x20</span> · max loss <span class="mc-w">9.83%</span></span></div>
       <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">ℹ️</span><span style="font-size:13.5px;color:var(--gray);">24h <span class="mc-g">+0.64%</span> · Vol 3.2B</span></div>
@@ -801,7 +843,7 @@ document.querySelectorAll('.glass').forEach(container => {
         a: Math.random() * 0.25 + 0.05,
         noise: Math.random() * 1000,
         bright: Math.random() < 0.2,
-        accent: Math.random() < 0.1,
+        green: Math.random() < 0.1,
         color: null
       });
       i++;
@@ -856,7 +898,7 @@ document.querySelectorAll('.glass').forEach(container => {
           b = (70  + Math.random() * 40) | 0;
         }
         let alpha = p.bright ? p.a * 3 : p.a * 1.5;
-        if (p.accent && !isRed) { g = 160; b = 50; alpha = p.a * 2.6; }
+        if (p.green && !isRed) { g = 160; b = 50; alpha = p.a * 2.6; }
         p.color = `rgba(${r},${g},${b},${alpha.toFixed(3)})`;
       }
 
