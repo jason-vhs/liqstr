@@ -40,8 +40,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-#ch1, #ch2 { scroll-margin-top: 48px; }                                                                             
-#ch3 { scroll-margin-top: 80px; }
+#ch1, #ch2 { scroll-margin-top: 0px; }
+#ch3       { scroll-margin-top: 32px; }
 
 @keyframes gradShift {
   0%   { background-position: 0% 50%; }
@@ -49,31 +49,31 @@ body {
   100% { background-position: 0% 50%; }
 }
 .g-green {
-  background: linear-gradient(270deg, #00ff88, #00d4ff, #00ff88, #00d4ff);
+  background: linear-gradient(90deg, #00ff88, #00d4ff, #00ff88, #00d4ff);
   background-size: 300% 300%;
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: gradShift 5s ease infinite;
 }
 .g-white {
-  background: linear-gradient(270deg, #d0d8e8, #8fa8c8, #d0d8e8, #a8c0d8);
+  background: linear-gradient(90deg, #8fa8c8, #d0d8e8, #8fa8c8, #a8c0d8);
   background-size: 300% 300%;
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: gradShift 5s ease infinite;
 }
 .g-blue {
-  background: linear-gradient(270deg, #2e90fa, #06d6f5, #2e90fa, #7ab8ff);
+  background: linear-gradient(90deg, #2e90fa, #06d6f5, #2e90fa, #7ab8ff);
   background-size: 300% 300%;
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: gradShift 5s ease infinite;
 }
 .g-yellow {
-  background: linear-gradient(270deg, #ffd60a, #ff9f0a, #ffd60a, #ffe566);
+  background: linear-gradient(90deg, #ff9f0a, #ffd60a, #ff9f0a, #ffe566);
   background-size: 300% 300%;
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: gradShift 5s ease infinite;
 }
 .g-red {
-  background: linear-gradient(270deg, #ff453a, #ff7b73, #ff453a, #ff6b6b);
+  background: linear-gradient(90deg, #ff453a, #ff7b73, #ff453a, #ff6b6b);
   background-size: 300% 300%;
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: gradShift 5s ease infinite;
@@ -127,7 +127,7 @@ body {
   opacity: 0; animation: fadeUp 0.7s ease 0.35s both;
 }
 .hero-sub {
-  font-size: 14px; font-weight: 300; line-height: 1.7; max-width: 310px; margin: 22px auto 0;
+  font-size: 14px; font-weight: 300; line-height: 1.7; max-width: 350px; margin: 22px auto 0;
   font-style: italic;
   opacity: 0; animation: fadeUp 0.8s ease 0.65s both;
 }
@@ -231,7 +231,7 @@ body {
   line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 14px;
 }
 
-.section-desc { font-size: 13.5px; font-weight: 300; color: var(--gray); line-height: 1.7; max-width: 280px; margin: 0 auto; }
+.section-desc { font-size: 13.5px; font-weight: 300; color: var(--gray); line-height: 1.7; max-width: 350px; margin: 0 auto; }
 
 .tag { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--green); margin-bottom: 12px; display: block; }
 .sh { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 12px; }
@@ -462,7 +462,7 @@ footer a    { font-size: 11px; color: var(--green); text-decoration: none; }
   <div class="hero-grid"></div>
   <p class="eyebrow">Telegram Signals Bot</p>
   <h1 class="hero-title g-green" id="heroTitle">LIQUIDITY<br>STRUCTURE</h1>
-  <p class="hero-sub g-white">Highlights reactions at key session liquidity levels, counter-trend consolidation line breakouts, and sweep reversal signals across 24h top gainers and losers</p>
+  <p class="hero-sub g-white">Highlights reactions at key session liquidity levels, counter-trend consolidation line breakouts,<br>and sweep reversal signals<br>across 24h top gainers and losers</p>
   <div class="hero-btns">
     <a href="https://t.me/LiquidityStructureBot" class="btn-main">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
@@ -484,7 +484,7 @@ footer a    { font-size: 11px; color: var(--green); text-decoration: none; }
   <div class="section-header r">
     <div class="channel-pill">📍<span class="ch-dot"></span><span class="ch-label">Channel 1</span></div>
     <div class="section-title g-blue" style="font-size:clamp(20px,6.5vw,28px)">KEY SESSION<br>LIQUIDITY LEVELS</div>
-    <p class="section-desc">Reject &amp; fakeout signals at HOD, LOD &amp; broken session liquidity levels — with volume-based power rating on every sweep.</p>
+    <p class="section-desc g-white">Reject &amp; fakeout signals at HOD, LOD &amp; broken<br>session liquidity levels — with volume-based power<br>rating on every sweep.</p>
   </div>
 
   <div class="signal-cards rg">
@@ -528,7 +528,7 @@ footer a    { font-size: 11px; color: var(--green); text-decoration: none; }
   <div class="section-header r">
     <div class="channel-pill">📈<span class="ch-dot"></span><span class="ch-label">Channel 2</span></div>
     <div class="section-title g-yellow" style="font-size:clamp(20px,6.5vw,28px)">COUNTER-TREND<br>CONSOLIDATION LINES</div>
-    <p class="section-desc">Breakout signals of counter-trend consolidation lines — Star  &amp; Diamond quality tiers.</p>
+    <p class="section-desc g-white">Breakout signals of counter-trend consolidation lines —<br>Star  &amp; Diamond quality tiers.</p>
   </div>
 
   <div class="signal-cards rg">
@@ -579,7 +579,7 @@ footer a    { font-size: 11px; color: var(--green); text-decoration: none; }
     <div class="channel-pill">💸<span class="ch-dot"></span><span class="ch-label">Channel 3</span></div>
     <div class="section-title g-red" style="font-size:clamp(20px,6.5vw,28px)">SWEEP REVERSALS<br>
     <span class="g-yellow" style="font-size:clamp(14px,4vw,18px)">NEW CHANNEL</span></div>
-    <p class="section-desc">Bounce &amp; reversal signals after liquidity sweeps — from the first reaction to the confirmed flip after a double sweep.</p>
+    <p class="section-desc g-white">Bounce &amp; reversal signals after liquidity sweeps —<br>from the first reaction to the confirmed flip<br>after a double sweep.</p>
   </div>
 
   <div class="signal-cards rg">
