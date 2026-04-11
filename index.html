@@ -28,6 +28,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  scroll-padding-top: 30px;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -39,9 +40,6 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
-
-#ch1, #ch2 { scroll-margin-top: 0px; }
-#ch3       { scroll-margin-top: 32px; }
 
 @keyframes gradShift {
   0%   { background-position: 0% 50%; }
@@ -210,9 +208,10 @@ body {
 }
 
 .section { padding: 64px 20px; }
+.section-header { text-align: center; margin-bottom: 36px; }
+
 #ch2 { padding-bottom: 32px; }
 #ch3 { padding-top: 32px; }
-.section-header { text-align: center; margin-bottom: 36px; }
 
 .channel-pill {
   display: inline-flex; align-items: center; gap: 8px;
