@@ -101,9 +101,9 @@ body {
 }
 @keyframes gridGlow {
   0%, 100% { opacity: 0; }
-  30%       { opacity: 0.08; filter: hue-rotate(0deg); }
-  55%       { opacity: 0.06; filter: hue-rotate(-30deg); }
-  80%       { opacity: 0.04; filter: hue-rotate(25deg); }
+  30%       { opacity: 0.08; }
+  55%       { opacity: 0.06; }
+  80%       { opacity: 0.04; }
 }
 .hero-title {
   font-family: 'Unbounded', sans-serif;
@@ -884,6 +884,11 @@ document.querySelectorAll('.rg').forEach(group => {
   });
 });
 
+let rafActive = true;
+document.addEventListener('visibilitychange', () => {
+  rafActive = !document.hidden;
+  if (rafActive) requestAnimationFrame(masterLoop);
+});
 let globalScrollDY = 0;
 let lastScrollY = window.scrollY;
 window.addEventListener('scroll', () => {
@@ -894,6 +899,7 @@ window.addEventListener('scroll', () => {
 const dustLoops = [];
 
 function masterLoop(t) {
+  if (!rafActive) return;
   requestAnimationFrame(masterLoop);
   const dy = globalScrollDY;
   globalScrollDY = 0;
@@ -940,27 +946,37 @@ document.querySelectorAll('.glass').forEach(container => {
     cellH = cH / rows;
   }
 
-  const COUNT = 80;
-  const particles = [];
+  const COUNT = 60;
 
   resizeHandlers.push(resize);
   resize();
 
+  const particles = [];
   let i = 0;
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       if (i >= COUNT) break;
+      const bright = Math.random() < 0.2;
+      const green  = Math.random() < 0.1;
+      const a_base = Math.random() * 0.25 + 0.05;
+      let alpha = bright ? a_base * 3 : a_base * 1.5;
+      let r = 255, g2, b2;
+      if (isRed) {
+        g2 = (69  + Math.random() * 20) | 0;
+        b2 = (58  + Math.random() * 20) | 0;
+      } else {
+        g2 = (200 + Math.random() * 40) | 0;
+        b2 = (70  + Math.random() * 40) | 0;
+        if (green) { g2 = 160; b2 = 50; alpha = a_base * 2.6; }
+      }
       particles.push({
-        x: x * cellW + Math.random() * cellW,
-        y: y * cellH + Math.random() * cellH,
-        r: Math.random() < 0.25 ? Math.random() * 2 + 1 : Math.random() * 1 + 0.3,
+        x:  x * cellW + Math.random() * cellW,
+        y:  y * cellH + Math.random() * cellH,
+        r:  Math.random() < 0.25 ? Math.random() * 2 + 1 : Math.random() * 1 + 0.3,
         vx: (Math.random() - 0.5) * 0.3,
         vy: (Math.random() - 0.5) * 0.3,
-        a: Math.random() * 0.25 + 0.05,
         noise: Math.random() * 1000,
-        bright: Math.random() < 0.2,
-        green: Math.random() < 0.1,
-        color: null
+        color: `rgba(${r},${g2},${b2},${alpha.toFixed(3)})`
       });
       i++;
     }
@@ -1003,20 +1019,6 @@ document.querySelectorAll('.glass').forEach(container => {
 
       if (p.x < 0) p.x += cW; else if (p.x > cW) p.x -= cW;
       if (p.y < 0) p.y += cH; else if (p.y > cH) p.y -= cH;
-
-      if (!p.color) {
-        let r = 255, g, b;
-        if (isRed) {
-          g = (69  + Math.random() * 20) | 0;
-          b = (58  + Math.random() * 20) | 0;
-        } else {
-          g = (200 + Math.random() * 40) | 0;
-          b = (70  + Math.random() * 40) | 0;
-        }
-        let alpha = p.bright ? p.a * 3 : p.a * 1.5;
-        if (p.green && !isRed) { g = 160; b = 50; alpha = p.a * 2.6; }
-        p.color = `rgba(${r},${g},${b},${alpha.toFixed(3)})`;
-      }
 
       ctx.fillStyle = p.color;
       ctx.fillRect(p.x, p.y, p.r, p.r);
