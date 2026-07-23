@@ -513,8 +513,8 @@ body {
 .mock-card > * { position: relative; z-index: 1; }
 .mock-card:hover  { transform: scale(1.02); border-color: rgba(0,255,136,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 4px 8px rgba(0,0,0,0.3), 0 20px 60px rgba(0,0,0,0.28), 0 0 80px rgba(0,255,136,0.06); }
 .mock-card:active { transform: scale(0.98); border-color: rgba(0,255,136,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 4px 8px rgba(0,0,0,0.3), 0 20px 60px rgba(0,0,0,0.28), 0 0 80px rgba(0,255,136,0.06); }
-.mc-g { color: #00ff88; }
-.mc-r { color: #ff453a; }
+.mc-g { color: #00ff88; font-weight: 600; }
+.mc-r { color: #ff453a; font-weight: 600; }
 .mc-w { color: #fff; font-weight: 600; }
 
 .info-rows { margin-top: 30px; display: flex; flex-direction: column; gap: 12px; }
@@ -727,7 +727,7 @@ footer a    { font-size: 11px; color: var(--green); text-decoration: none; }
       <span class="card-sym">💫</span>
       <div class="card-text">
         <h3 style="color:var(--yellow)" class="g-yellow">Reversal</h3>
-        <p class="g-white">CHoCH+BOS sequence against the previous trend, only after price reaches a daily ATR-based extreme.</p>
+        <p class="g-white">CHoCH+BOS sequence against the trend, only after price reaches a daily ATR-based extreme.</p>
       </div>
     </div>
     <div class="signal-card c-red r">
@@ -767,23 +767,25 @@ footer a    { font-size: 11px; color: var(--green); text-decoration: none; }
     <div style="border-left:2.5px solid var(--green);padding-left:14px;display:flex;flex-direction:column;gap:8px;">
       <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">🛡️</span><span style="font-size:13.5px;">SL <span class="mc-r">-0.49%</span> · <span class="mc-w">2119.18</span></span></div>
       <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">🎲</span><span style="font-size:13.5px;">Lev <span class="mc-w">x20</span> · max loss <span class="mc-w">9.83%</span></span></div>
-      <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">ℹ️</span><span style="font-size:13.5px;color:var(--gray);">24h <span class="mc-g">+0.64%</span> · Vol 3.2B</span></div>
-      <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">📅</span><span style="font-size:13.5px;color:var(--gray);">Mar 24, 19:42</span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">🎚️</span><span style="font-size:13.5px;">ATR <span class="mc-g">+1.23 ↑</span></span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">ℹ️</span><span style="font-size:13.5px">24h <span class="mc-g">+0.64%</span> · Vol 3.2B</span></div>
+      <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">📅</span><span style="font-size:13.5px">Mar 24, 19:42</span></div>
       <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">♎️</span><span style="font-size:13.5px;font-weight:700;">Sentiment: 11 ↑ · 16 ↓ 🔴</span></div>
     </div>
   </div>
 
   <div class="info-rows rg">
-    <div class="irow r"><div class="iicon">🧬</div><div class="itext"><h4>Trend on chart</h4><p>Green line = uptrend, red line = downtrend.</p></div></div>
-    <div class="irow r"><div class="iicon">💯</div><div class="itext"><h4>Top 100 Crypto</h4><p>The asset is among the top 100 by market capitalization.</p></div></div>
-    <div class="irow r"><div class="iicon">🇺🇸</div><div class="itext"><h4>U.S. stock futures</h4><p>Signals available during U.S. market hours.</p></div></div>
-    <div class="irow r"><div class="iicon">🛢️</div><div class="itext"><h4>Commodity futures</h4><p>Signals available during U.S. market hours.</p></div></div>
-    <div class="irow r"><div class="iicon">💪</div><div class="itext"><h4>Fakeout power</h4><p>Fakeouts scored by volume spike intensity.</p></div></div>
-    <div class="irow r"><div class="iicon">📐</div><div class="itext"><h4>Angle degrees</h4><p>Counter-trend consolidation line slope angle.</p></div></div>
-    <div class="irow r"><div class="iicon">🛡️</div><div class="itext"><h4>Stop-Loss</h4><p>Each alert includes a predefined invalidation level and risk percentage.</p></div></div>
-    <div class="irow r"><div class="iicon">🎲</div><div class="itext"><h4>Smart Leverage</h4><p>Calculated from stop-loss distance. Capped to keep maximum loss at 10% of margin.</p></div></div>
-    <div class="irow r"><div class="iicon">🎚️</div><div class="itext"><h4>Daily ATR</h4><p>Distance from today’s open, in multiples of the daily ATR.</p></div></div>
-    <div class="irow r"><div class="iicon">♎️</div><div class="itext"><h4>Market Sentiment</h4><p>🟢 Bullish 🔴 Bearish ⚪️ Neutral — gainers vs losers skew</p></div></div>
+    <div class="irow r"><div class="iicon">🧬</div><div class="itext"><h4>Trend on chart</h4><p>Green line = uptrend, red line = downtrend</p></div></div>
+    <div class="irow r"><div class="iicon">💯</div><div class="itext"><h4>Top 100 Crypto</h4><p>The asset is among the top 100 by market capitalization</p></div></div>
+    <div class="irow r"><div class="iicon">🇺🇸</div><div class="itext"><h4>U.S. stock futures</h4><p>Signals available during U.S. market hours</p></div></div>
+    <div class="irow r"><div class="iicon">🛢️</div><div class="itext"><h4>Commodity futures</h4><p>Signals available during U.S. market hours</p></div></div>
+    <div class="irow r"><div class="iicon">💪</div><div class="itext"><h4>Fakeout power</h4><p>Level fakeouts scored by volume spike intensity</p></div></div>
+    <div class="irow r"><div class="iicon">📐</div><div class="itext"><h4>Angle degrees</h4><p>Slope angle of broken trendlines</p></div></div>
+    <div class="irow r"><div class="iicon">🔗</div><div class="itext"><h4>Pivot chain count</h4><p>Number of pivots chained into broken trendlines</p></div></div>
+    <div class="irow r"><div class="iicon">🛡️</div><div class="itext"><h4>Stop-Loss</h4><p>Each alert includes a predefined invalidation level and risk percentage</p></div></div>
+    <div class="irow r"><div class="iicon">🎲</div><div class="itext"><h4>Smart Leverage</h4><p>Calculated from stop-loss distance, capped to keep maximum loss at 10% of margin</p></div></div>
+    <div class="irow r"><div class="iicon">🎚️</div><div class="itext"><h4>Daily ATR</h4><p>Distance from today’s open, in multiples of the daily ATR</p></div></div>
+    <div class="irow r"><div class="iicon">♎️</div><div class="itext"><h4>Market Sentiment</h4><p>Gainers vs Losers skew: bullish, bearish or neutral</p></div></div>
   </div>
 </div>
 
