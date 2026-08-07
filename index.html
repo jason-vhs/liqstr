@@ -381,27 +381,6 @@ body {
   0%,100% { opacity: 0.06; transform: translateX(-50%) scale(1); }
   50%      { opacity: 0.13; transform: translateX(-50%) scale(1.2); }
 }
-.lbcard.hod::before { background: var(--green); }
-.lbcard.lod::before { background: var(--red); }
-.lbcard.brk::before { background: var(--blue); }
-.lbcard.hod { border-color: rgba(0,255,136,0.12); }
-.lbcard.lod { border-color: rgba(255,69,58,0.12); }
-.lbcard.brk { border-color: rgba(46,144,250,0.12); }
-.lbcard:hover { transform: scale(1.02); }
-.lbcard:active { transform: scale(0.98); }
-.lbcard.hod:hover, .lbcard.hod:active {
-  border-color: rgba(0,255,136,0.35);
-  box-shadow: 0 8px 28px rgba(0,255,136,0.1), inset 0 0 30px rgba(0,255,136,0.04);
-}
-.lbcard.lod:hover, .lbcard.lod:active {
-  border-color: rgba(255,69,58,0.35);
-  box-shadow: 0 8px 28px rgba(255,69,58,0.1), inset 0 0 30px rgba(255,69,58,0.04);
-}
-.lbcard.brk:hover, .lbcard.brk:active {
-  border-color: rgba(46,144,250,0.35);
-  box-shadow: 0 8px 28px rgba(46,144,250,0.1), inset 0 0 30px rgba(46,144,250,0.04);
-}
-.lbcard > * { position: relative; z-index: 1; }
 
 .lbadge {
   display: inline-block; padding: 3px 9px; border-radius: 6px;
@@ -624,7 +603,7 @@ footer a    { font-size: 11px; color: var(--green); text-decoration: none; }
   <div class="section-header r">
     <div class="channel-pill">♒️<span class="ch-dot"></span><span class="ch-label">Channel 1</span></div>
     <div class="section-title g-blue" style="font-size:clamp(20px,6.5vw,28px)">LIQUIDITY LEVELS</div>
-    <p class="section-desc g-white">Rejections &amp; fakeouts at HOD, LOD &amp; broken levels<br>with volume-based power rating for each sweep</p>
+    <p class="section-desc g-white">Rejections &amp; fakeouts at liquidity levels<br>with volume-based power rating for each sweep</p>
   </div>
 
   <div class="signal-cards rg">
@@ -642,12 +621,6 @@ footer a    { font-size: 11px; color: var(--green); text-decoration: none; }
         <p class="g-white">Sweeps the level to grab liquidity, then snaps back. Rated from 1 to 5 based on the volume spike behind the move.</p>
       </div>
     </div>
-  </div>
-
-  <div class="level-badges r">
-    <div class="lbcard hod"><div class="lbadge lb-g">HOD</div><div class="lbname">High of Day</div><div class="lbdesc">Primary resistance</div></div>
-    <div class="lbcard lod"><div class="lbadge lb-r">LOD</div><div class="lbname">Low of Day</div><div class="lbdesc">Primary support</div></div>
-    <div class="lbcard brk"><div class="lbadge lb-b">BRK</div><div class="lbname">Broken</div><div class="lbdesc">Previous HOD/LOD</div></div>
   </div>
 </section>
 
@@ -718,22 +691,22 @@ footer a    { font-size: 11px; color: var(--green); text-decoration: none; }
   <div class="section-header r">
     <div class="channel-pill">🏄‍♂️<span class="ch-dot"></span><span class="ch-label">Channel 3</span></div>
     <div class="section-title g-red" style="font-size:clamp(20px,6.5vw,28px)">STRUCTURE REVERSALS<br></div>
-    <p class="section-desc g-white">Reversals & bounces at the transition from an extreme<br>to a confirmed structural shift</p>
+    <p class="section-desc g-white">Bounces & reversals at the transition from an extreme<br>to a confirmed structural shift</p>
   </div>
 
   <div class="signal-cards rg">
+    <div class="signal-card c-red r">
+      <span class="card-sym">🏓</span>
+      <div class="card-text">
+        <h3 style="color:var(--red)" class="g-red">Bounce</h3>
+        <p class="g-white">Price pulls back on the 1h candle, then continues the new trend — catching a potential reversal before CHoCH.</p>
+      </div>
+    </div>
     <div class="signal-card c-yellow r">
       <span class="card-sym">💫</span>
       <div class="card-text">
         <h3 style="color:var(--yellow)" class="g-yellow">Reversal</h3>
         <p class="g-white">CHoCH → BOS sequence against the trend, only after price reaches a daily ATR-based extreme.</p>
-      </div>
-    </div>
-    <div class="signal-card c-red r">
-      <span class="card-sym">🏓</span>
-      <div class="card-text">
-        <h3 style="color:var(--red)" class="g-red">Bounce</h3>
-        <p class="g-white">Reversal that started with a displacement-gap bounce.</p>
       </div>
     </div>
   </div>
